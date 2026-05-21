@@ -20,8 +20,12 @@ export function SocialProofToast() {
   const showToast = useCallback(() => {
     const msg = toastMessages[Math.floor(Math.random() * toastMessages.length)];
     toast(msg, {
-      duration: 4000,
+      duration: 5000,
       id: "social-proof",
+      style: {
+        fontSize: '1.05rem',
+        padding: '14px 20px',
+      },
     });
   }, []);
 
@@ -41,7 +45,7 @@ export function SocialProofToast() {
     // Show subsequent toasts every 8-12 seconds
     const interval = setInterval(() => {
       showToast();
-    }, 8000 + Math.random() * 4000);
+    }, 15000 + Math.random() * 4000);
 
     return () => clearInterval(interval);
   }, [shown, showToast]);

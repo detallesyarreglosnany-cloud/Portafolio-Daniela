@@ -67,19 +67,19 @@ function Particles() {
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-12">
+    <section className="relative flex items-center justify-center overflow-hidden px-4 pt-6 pb-2 md:pt-8 md:pb-4">
       <Particles />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0F0D0B]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0F0D0B] via-transparent to-[#0F0D0B]" />
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="flex items-center justify-center mb-6">
+          <div className="flex items-center justify-center mb-3">
             <Key className="w-12 h-12 md:w-16 md:h-16 text-gold float-animation" />
           </div>
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-6 gold-shimmer leading-tight">
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-3 gold-shimmer leading-tight">
             LLAVE DIGITAL 3.0
           </h1>
         </motion.div>
@@ -88,7 +88,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <p className="text-base md:text-lg lg:text-xl text-foreground/90 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl text-foreground/90 max-w-3xl mx-auto mb-4 leading-relaxed">
             Tú que nunca te diste el lujo de rendirte. Tú que inventas, resuelves, aguantas.{" "}
             <span className="text-gold font-semibold">
               La inteligencia artificial no es tu competencia, es tu aliada más poderosa.
