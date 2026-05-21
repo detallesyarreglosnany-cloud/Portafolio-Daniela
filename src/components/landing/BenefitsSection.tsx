@@ -36,10 +36,10 @@ export function BenefitsSection() {
     <section className="py-8 md:py-10 px-4 bg-[#0A0908]">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, type: "spring", bounce: 0.25 }}
           className="text-center mb-6"
         >
           <h2 className="font-serif text-3xl md:text-5xl font-bold text-gold mb-3">
@@ -53,15 +53,20 @@ export function BenefitsSection() {
           {benefits.map((b, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40, rotateX: 15 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.12, type: "spring", bounce: 0.3 }}
+              whileHover={{ scale: 1.06, y: -5, boxShadow: "0 10px 30px rgba(201,168,76,0.15)" }}
               className="bg-card border border-gold/15 rounded-xl p-5 flex-1 hover:border-gold/40 transition-all duration-300 group"
             >
-              <div className="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center mb-3 group-hover:bg-gold/20 transition-colors">
+              <motion.div
+                className="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center mb-3 group-hover:bg-gold/20 transition-colors"
+                whileHover={{ rotate: 360, scale: 1.2 }}
+                transition={{ duration: 0.4 }}
+              >
                 <b.icon className="w-5 h-5 text-gold" />
-              </div>
+              </motion.div>
               <h3 className="text-gold font-bold text-base mb-1">{b.title}</h3>
               <p className="text-foreground/80 text-sm leading-relaxed">{b.text}</p>
             </motion.div>

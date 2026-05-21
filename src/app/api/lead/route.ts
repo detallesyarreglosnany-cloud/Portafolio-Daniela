@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // Google Sheets Web App URL (will be set up via Apps Script)
-const GOOGLE_SHEETS_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL || "";
+const GOOGLE_SHEETS_URL = process.env.GOOGLE_SHEETS_URL || process.env.GOOGLE_SHEETS_WEBHOOK_URL || "";
 // Mailchimp API config
 const MAILCHIMP_API_KEY = process.env.MAILCHIMP_API_KEY || "";
 const MAILCHIMP_SERVER_PREFIX = process.env.MAILCHIMP_SERVER_PREFIX || "";

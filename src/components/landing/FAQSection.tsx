@@ -44,10 +44,10 @@ export function FAQSection() {
     <section className="py-8 md:py-10 px-4 bg-[#0A0908]">
       <div className="max-w-2xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, type: "spring", bounce: 0.25 }}
           className="text-center mb-8"
         >
           <h2 className="font-serif text-3xl md:text-5xl font-bold text-gold mb-3">
@@ -56,25 +56,32 @@ export function FAQSection() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.2, type: "spring", bounce: 0.2 }}
         >
           <Accordion type="single" collapsible className="space-y-2">
             {faqs.map((faq, i) => (
-              <AccordionItem
+              <motion.div
                 key={i}
-                value={`faq-${i}`}
-                className="bg-card border border-gold/15 rounded-xl px-5 data-[state=open]:border-gold/40 transition-colors"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
               >
-                <AccordionTrigger className="text-foreground font-semibold text-sm md:text-base text-left hover:text-gold hover:no-underline transition-colors py-4 [&>svg]:text-gold">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-foreground/80 text-sm leading-relaxed pb-4">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem
+                  value={`faq-${i}`}
+                  className="bg-card border border-gold/15 rounded-xl px-5 data-[state=open]:border-gold/40 transition-colors"
+                >
+                  <AccordionTrigger className="text-foreground font-semibold text-sm md:text-base text-left hover:text-gold hover:no-underline transition-colors py-4 [&>svg]:text-gold">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-foreground/80 text-sm leading-relaxed pb-4">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
             ))}
           </Accordion>
         </motion.div>

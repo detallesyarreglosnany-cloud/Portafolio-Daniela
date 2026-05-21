@@ -15,7 +15,7 @@ const testimonials = [
 
 function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
   return (
-    <div className="flex-shrink-0 w-80 md:w-96 bg-card border border-gold/15 rounded-xl p-5 hover:border-gold/30 transition-colors mx-2">
+    <div className="flex-shrink-0 w-80 md:w-96 bg-card border border-gold/15 rounded-xl p-5 hover:border-gold/30 transition-colors mx-2 hover:shadow-lg hover:shadow-gold/5">
       <div className="flex items-start gap-4">
         <div className="flex-shrink-0">
           <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center">
@@ -39,10 +39,10 @@ export function TestimonialsSection() {
     <section className="py-8 md:py-10 px-4 overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, type: "spring", bounce: 0.25 }}
           className="text-center mb-6"
         >
           <h2 className="font-serif text-3xl md:text-5xl font-bold text-gold mb-3">

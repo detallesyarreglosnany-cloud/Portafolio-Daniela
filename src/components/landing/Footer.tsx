@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Instagram, Facebook, MessageCircle } from "lucide-react";
 
 const TikTokIcon = () => (
@@ -19,7 +20,13 @@ export function Footer() {
   return (
     <footer className="bg-[#0A0908] border-t border-gold/10 py-8 px-4 mt-auto">
       <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row items-center justify-between gap-4"
+        >
           <div className="text-center md:text-left">
             <p className="text-gold font-serif font-bold text-lg">Llave Digital 3.0</p>
             <p className="text-muted-foreground text-xs mt-1">
@@ -27,31 +34,43 @@ export function Footer() {
             </p>
           </div>
           <div className="flex items-center gap-4">
-            {socialLinks.map((s) => (
-              <a
+            {socialLinks.map((s, i) => (
+              <motion.a
                 key={s.label}
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center hover:bg-gold/20 transition-colors text-gold"
                 aria-label={s.label}
+                whileHover={{ scale: 1.2, y: -3 }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.1 }}
               >
                 {typeof s.icon === "function" && s.icon.prototype ? (
                   <s.icon className="w-5 h-5" />
                 ) : (
                   <s.icon />
                 )}
-              </a>
+              </motion.a>
             ))}
           </div>
-        </div>
-        <div className="mt-6 pt-4 border-t border-gold/5 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-6 pt-4 border-t border-gold/5 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-muted-foreground"
+        >
           <p>© 2026 Llave Digital 3.0. Todos los derechos reservados.</p>
           <div className="flex gap-4">
             <a href="#" className="hover:text-gold transition-colors">Términos y Condiciones</a>
             <a href="#" className="hover:text-gold transition-colors">Política de Privacidad</a>
           </div>
-        </div>
+        </motion.div>
         <p className="text-center text-[10px] text-muted-foreground/50 mt-4">
           Este sitio no está afiliado con Facebook, Instagram ni WhatsApp. Los resultados pueden variar. Esto no es una garantía de ingresos.
         </p>

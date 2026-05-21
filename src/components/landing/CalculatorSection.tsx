@@ -26,10 +26,10 @@ export function CalculatorSection() {
     <section className="py-8 md:py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, type: "spring", bounce: 0.25 }}
           className="text-center mb-6"
         >
           <h2 className="font-serif text-3xl md:text-5xl font-bold text-gold mb-3">
@@ -41,14 +41,19 @@ export function CalculatorSection() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.2, type: "spring", bounce: 0.2 }}
           className="bg-card border border-gold/20 rounded-2xl p-6 md:p-8 pulse-glow"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Calculator className="w-6 h-6 text-gold" />
+            <motion.div
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            >
+              <Calculator className="w-6 h-6 text-gold" />
+            </motion.div>
             <h3 className="text-gold font-bold text-xl">Simulador de Ingresos</h3>
           </div>
 
@@ -56,7 +61,14 @@ export function CalculatorSection() {
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
               <span className="text-foreground/80 text-sm">Ventas por mes</span>
-              <span className="text-gold font-bold text-2xl font-mono">{sales}</span>
+              <motion.span
+                key={sales}
+                initial={{ scale: 1.3, color: "#E8D48B" }}
+                animate={{ scale: 1, color: "#C9A84C" }}
+                className="text-gold font-bold text-2xl font-mono"
+              >
+                {sales}
+              </motion.span>
             </div>
             <Slider
               value={[sales]}
@@ -75,26 +87,32 @@ export function CalculatorSection() {
 
           {/* Income grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8">
-            <div className="bg-[#0F0D0B] rounded-xl p-4 text-center border border-gold/10">
-              <DollarSign className="w-5 h-5 text-gold mx-auto mb-1" />
-              <p className="text-xs text-muted-foreground mb-1">Diario</p>
-              <p className="text-gold font-bold text-lg md:text-xl font-mono">{fmt(daily)}</p>
-            </div>
-            <div className="bg-[#0F0D0B] rounded-xl p-4 text-center border border-gold/10">
-              <Calendar className="w-5 h-5 text-gold mx-auto mb-1" />
-              <p className="text-xs text-muted-foreground mb-1">Semanal</p>
-              <p className="text-gold font-bold text-lg md:text-xl font-mono">{fmt(weekly)}</p>
-            </div>
-            <div className="bg-[#0F0D0B] rounded-xl p-4 text-center border border-gold/10">
-              <TrendingUp className="w-5 h-5 text-gold mx-auto mb-1" />
-              <p className="text-xs text-muted-foreground mb-1">Mensual</p>
-              <p className="text-gold font-bold text-2xl md:text-3xl font-mono">{fmt(monthly)}</p>
-            </div>
-            <div className="bg-[#0F0D0B] rounded-xl p-4 text-center border border-gold/10">
-              <DollarSign className="w-5 h-5 text-gold mx-auto mb-1" />
-              <p className="text-xs text-muted-foreground mb-1">Anual</p>
-              <p className="text-gold font-bold text-lg md:text-xl font-mono">{fmt(yearly)}</p>
-            </div>
+            {[
+              { icon: DollarSign, label: "Diario", value: fmt(daily), size: "text-lg md:text-xl" },
+              { icon: Calendar, label: "Semanal", value: fmt(weekly), size: "text-lg md:text-xl" },
+              { icon: TrendingUp, label: "Mensual", value: fmt(monthly), size: "text-2xl md:text-3xl" },
+              { icon: DollarSign, label: "Anual", value: fmt(yearly), size: "text-lg md:text-xl" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+                className="bg-[#0F0D0B] rounded-xl p-4 text-center border border-gold/10"
+              >
+                <item.icon className="w-5 h-5 text-gold mx-auto mb-1" />
+                <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
+                <motion.p
+                  key={item.value}
+                  initial={{ scale: 1.2 }}
+                  animate={{ scale: 1 }}
+                  className={`text-gold font-bold ${item.size} font-mono`}
+                >
+                  {item.value}
+                </motion.p>
+              </motion.div>
+            ))}
           </div>
 
           {/* Comparison */}
@@ -126,9 +144,13 @@ export function CalculatorSection() {
                 </div>
               </div>
             </div>
-            <p className="text-center text-gold font-bold text-lg mt-3">
+            <motion.p
+              className="text-center text-gold font-bold text-lg mt-3"
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
               {Math.round(monthly / MIN_WAGE_MONTHLY)}x más que el salario mínimo
-            </p>
+            </motion.p>
           </div>
         </motion.div>
       </div>
