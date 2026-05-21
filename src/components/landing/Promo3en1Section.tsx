@@ -10,7 +10,7 @@ const HOTMART_3EN1_LINK = "https://go.hotmart.com/S105487769E?ap=6efa";
 
 export function Promo3en1Section() {
   return (
-    <section className="py-10 md:py-14 px-4">
+    <section className="py-8 md:py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -48,7 +48,7 @@ export function Promo3en1Section() {
           >
             <Button
               size="lg"
-              className="btn-glow-border bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold text-xl px-16 py-8 rounded-lg transition-all duration-300 hover:scale-105"
+              className="btn-glow-border btn-mega bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold text-xl md:text-2xl px-12 md:px-20 py-8 md:py-10 rounded-xl transition-all duration-300 hover:scale-110 min-w-[280px] md:min-w-[400px]"
               onClick={() => {
                 trackInitiateCheckout();
                 window.open(HOTMART_3EN1_LINK, "_blank");

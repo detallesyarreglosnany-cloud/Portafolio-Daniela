@@ -202,7 +202,7 @@
   animation: glowBorder 2s ease-in-out infinite;
 }
 
-/* Border glow travel animation for buttons */
+/* Border glow travel animation for buttons with 3D effect */
 @keyframes borderGlowTravel {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -212,16 +212,24 @@
 .btn-glow-border {
   position: relative;
   z-index: 0;
+  transform: perspective(500px) translateZ(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(201, 168, 76, 0.2), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-glow-border:hover {
+  transform: perspective(500px) translateZ(8px);
+  box-shadow: 0 8px 25px rgba(201, 168, 76, 0.35), 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .btn-glow-border::before {
   content: '';
   position: absolute;
-  inset: -2px;
+  inset: -3px;
   border-radius: inherit;
-  background: linear-gradient(90deg, transparent, #C9A84C, #E8D48B, #C9A84C, transparent);
+  background: linear-gradient(90deg, transparent 0%, #C9A84C 15%, #E8D48B 30%, #C9A84C 45%, transparent 50%, #C9A84C 65%, #E8D48B 80%, #C9A84C 95%, transparent 100%);
   background-size: 300% 100%;
-  animation: borderGlowTravel 3s linear infinite;
+  animation: borderGlowTravel 2.5s linear infinite;
   z-index: -2;
 }
 
@@ -232,6 +240,22 @@
   border-radius: inherit;
   background: inherit;
   z-index: -1;
+}
+
+/* Mega button pulse for 3en1 */
+@keyframes megaPulse {
+  0%, 100% { transform: perspective(500px) translateZ(0) scale(1); box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3); }
+  50% { transform: perspective(500px) translateZ(10px) scale(1.04); box-shadow: 0 12px 35px rgba(201, 168, 76, 0.5), 0 6px 12px rgba(0, 0, 0, 0.4); }
+}
+
+.btn-mega {
+  animation: megaPulse 2s ease-in-out infinite;
+}
+
+.btn-mega:hover {
+  animation: none;
+  transform: perspective(500px) translateZ(12px) scale(1.06);
+  box-shadow: 0 16px 45px rgba(201, 168, 76, 0.6), 0 8px 16px rgba(0, 0, 0, 0.5);
 }
 
 /* Section entrance animations */

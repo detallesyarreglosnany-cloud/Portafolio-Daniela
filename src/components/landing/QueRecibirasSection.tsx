@@ -10,14 +10,14 @@ const HOTMART_LINK = "https://go.hotmart.com/S105487769E?ap=15e3";
 
 export function QueRecibirasSection() {
   return (
-    <section className="py-10 md:py-14 px-4">
+    <section className="py-8 md:py-10 px-4">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8"
+          className="text-center mb-6"
         >
           <h2 className="font-serif text-3xl md:text-5xl font-bold text-gold mb-3">
             ¿Qué recibirás al completar el pago?
@@ -29,15 +29,15 @@ export function QueRecibirasSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center gap-6"
+          className="flex flex-col items-center gap-4"
         >
-          <div className="relative rounded-2xl overflow-hidden border border-gold/20 w-full">
+          <div className="relative rounded-2xl overflow-hidden border border-gold/20 w-full max-w-md mx-auto">
             <Image
               src="/images/promo-activa.jpeg"
               alt="Activa tu Franquicia IA - Solo $97 USD - Todo lo que recibes"
-              width={600}
-              height={900}
-              className="w-full h-auto"
+              width={400}
+              height={500}
+              className="w-full h-auto object-contain"
             />
           </div>
           <Button

@@ -67,7 +67,7 @@ function Particles() {
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-12">
       <Particles />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0F0D0B]" />
       <div className="relative z-10 max-w-4xl mx-auto text-center">

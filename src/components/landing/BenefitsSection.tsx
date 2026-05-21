@@ -33,14 +33,14 @@ const benefits = [
 
 export function BenefitsSection() {
   return (
-    <section className="py-10 md:py-14 px-4 bg-[#0A0908]">
+    <section className="py-8 md:py-10 px-4 bg-[#0A0908]">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10"
+          className="text-center mb-6"
         >
           <h2 className="font-serif text-3xl md:text-5xl font-bold text-gold mb-3">
             Lo que obtienes

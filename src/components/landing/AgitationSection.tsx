@@ -9,7 +9,7 @@ const HOTMART_LINK = "https://go.hotmart.com/S105487769E?ap=15e3";
 
 export function AgitationSection() {
   return (
-    <section className="py-10 md:py-14 px-4 bg-[#0A0908]">
+    <section className="py-8 md:py-10 px-4 bg-[#0A0908]">
       <div className="max-w-3xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -17,10 +17,10 @@ export function AgitationSection() {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-gold mb-8">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-gold mb-6">
             El momento de decidir es ahora
           </h2>
-          <div className="space-y-6 mb-10">
+          <div className="space-y-4 mb-6">
             <p className="text-foreground/90 text-base md:text-lg leading-relaxed">
               Cada día que esperas es un día más que sigues en el mismo lugar.{" "}
               <span className="text-gold font-semibold">

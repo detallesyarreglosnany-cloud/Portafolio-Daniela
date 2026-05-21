@@ -5,14 +5,14 @@ import Image from "next/image";
 
 export function RankingSection() {
   return (
-    <section className="py-10 md:py-14 px-4 bg-[#0A0908]">
+    <section className="py-8 md:py-10 px-4 bg-[#0A0908]">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8"
+          className="text-center mb-6"
         >
           <h2 className="font-serif text-3xl md:text-5xl font-bold text-gold mb-3">
             Resultados que hablan
@@ -26,13 +26,13 @@ export function RankingSection() {
           transition={{ duration: 0.6 }}
           className="flex justify-center"
         >
-          <div className="relative rounded-2xl overflow-hidden border border-gold/20 w-full">
+          <div className="relative rounded-2xl overflow-hidden border border-gold/20 w-full max-w-md mx-auto">
             <Image
               src="/images/franquicia-ia-ranking.jpeg"
               alt="Ranking de Embajadores - La Franquicia IA - $786,571 USD facturados"
-              width={600}
-              height={750}
-              className="w-full h-auto"
+              width={400}
+              height={500}
+              className="w-full h-auto object-contain"
             />
           </div>
         </motion.div>
