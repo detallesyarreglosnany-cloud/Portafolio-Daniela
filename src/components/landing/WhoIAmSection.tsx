@@ -28,12 +28,12 @@ export function WhoIAmSection() {
             className="md:col-span-2 flex justify-center"
           >
             <div className="relative">
-              <div className="w-56 h-72 md:w-64 md:h-80 rounded-2xl border-2 border-gold/50 glow-border overflow-hidden">
+              <div className="w-64 h-80 md:w-72 md:h-96 rounded-2xl border-2 border-gold/50 glow-border overflow-hidden">
                 <Image
-                  src="/images/daniela-silva.jpeg"
+                  src="/images/daniela-nueva.jpeg"
                   alt="Daniela Silva - Estratega Digital y Creadora de Llave Digital 3.0"
-                  width={256}
-                  height={320}
+                  width={288}
+                  height={384}
                   className="w-full h-full object-cover object-top"
                   priority
                 />
@@ -51,40 +51,19 @@ export function WhoIAmSection() {
             className="md:col-span-3 space-y-4"
           >
             <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
-              Me llamo Daniela Silva y sé exactamente lo que sientes. Yo también estuve ahí:{" "}
-              <span className="text-gold font-semibold">viviendo al día, contando cada moneda, haciendo malabares para que alcance</span>.
-              No era la vida que soñaba, pero era la única que conocía.
+              Me llamo Daniela Silva.{" "}
+              <span className="text-gold font-semibold">Yo también estuve ahí: viviendo al día, contando cada moneda, sintiendo que fallaba aunque daba todo de mí.</span>
             </p>
             <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
-              Trabajaba horas interminables en algo que no me llenaba, llegaba exhausta a casa, y seguía sin llegar a fin de mes.
-              <span className="text-gold font-semibold"> Sentía que estaba fallando</span>, aunque estaba dando todo de mí.
+              Un día descubrí la inteligencia artificial, y todo cambió. Por primera vez tenía algo que{" "}
+              <span className="text-gold font-semibold">trabajaba para mí, no yo para ella</span>. Lo combiné con un sistema de ventas y empecé a generar ingresos reales desde mi celular.
             </p>
             <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
-              Un día descubrí la inteligencia artificial, y mi vida cambió. No porque fuera fácil, sino porque por primera vez
-              tenía una herramienta que{" "}
-              <span className="text-gold font-semibold">trabajaba para mí, no yo para ella</span>. Aprendí a usarla, la combiné
-              con un sistema de ventas y empecé a generar ingresos reales desde mi celular.
-            </p>
-            <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
-              Hoy soy afiliada de <span className="text-gold font-semibold">&quot;La Franquicia IA&quot; de Tata Salazar</span>,
-              uno de los programas más completos y exitosos del mercado. Y creo en este producto porque lo he vivido: funciona.
-            </p>
-            <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
-              <span className="text-gold font-semibold">Llave Digital 3.0 no es solo un curso</span>. Es el camino que yo seguí,
-              simplificado y estructurado para que tú no tengas que cometer los mismos errores. Es la hoja de ruta que me
-              hubiera gustado tener desde el principio.
-            </p>
-            <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
-              No te voy a prometer que te harás rica de la noche a la mañana. Eso es mentira. Pero sí te puedo decir que{" "}
-              <span className="text-gold font-semibold">si sigues los pasos, si te comprometes, los resultados llegan</span>. Llegaron
-              para mí, llegaron para cientos de mujeres, y pueden llegar para ti.
-            </p>
-            <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
-              No necesitas experiencia técnica. No necesitas ser experta en nada.{" "}
-              <span className="text-gold font-semibold">Solo necesitas decidir que estás lista para algo diferente</span>.
+              Hoy soy afiliada de <span className="text-gold font-semibold">&quot;La Franquicia IA&quot; de Tata Salazar</span> y creo en esto porque lo viví: funciona.{" "}
+              <span className="text-gold font-semibold">Llave Digital 3.0 es el camino que yo seguí</span>, simplificado para que tú no cometas los mismos errores.
             </p>
             <p className="text-foreground/90 text-sm md:text-base leading-relaxed font-semibold">
-              Yo ya tomé esa decisión. ¿Y tú?
+              Si sigues los pasos, los resultados llegan. Yo ya tomé la decisión. ¿Y tú?
             </p>
           </motion.div>
         </div>
