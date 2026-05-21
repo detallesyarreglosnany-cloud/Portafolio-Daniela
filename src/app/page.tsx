@@ -13,6 +13,7 @@ import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { RankingSection } from "@/components/landing/RankingSection";
 import { QuizSection } from "@/components/landing/QuizSection";
 import { FinalCTA } from "@/components/landing/FinalCTA";
+import { Reto21DiasSection } from "@/components/landing/Reto21DiasSection";
 import { FAQSection } from "@/components/landing/FAQSection";
 import { Footer } from "@/components/landing/Footer";
 import { WhatsAppButton } from "@/components/landing/WhatsAppButton";
@@ -35,6 +36,7 @@ export default function Home() {
         <RankingSection />
         <QuizSection />
         <FinalCTA />
+        <Reto21DiasSection />
         <FAQSection />
       </main>
       <Footer />
