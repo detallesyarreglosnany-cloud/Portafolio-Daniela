@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, Star } from "lucide-react";
+import Image from "next/image";
 
 export function WhoIAmSection() {
   return (
@@ -19,7 +19,7 @@ export function WhoIAmSection() {
           </h2>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
-          {/* Photo placeholder */}
+          {/* Photo of Daniela */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -28,19 +28,18 @@ export function WhoIAmSection() {
             className="md:col-span-2 flex justify-center"
           >
             <div className="relative">
-              <div className="w-56 h-72 md:w-64 md:h-80 rounded-2xl border-2 border-gold/50 glow-border bg-gradient-to-br from-[#1A1714] to-[#0F0D0B] flex flex-col items-center justify-center gap-4 overflow-hidden">
-                <div className="w-20 h-20 rounded-full bg-gold/20 flex items-center justify-center">
-                  <Award className="w-10 h-10 text-gold" />
-                </div>
-                <p className="text-gold font-serif font-bold text-xl">DANIELA</p>
-                <p className="text-gold font-serif font-bold text-xl">SILVA</p>
-                <div className="flex gap-1">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <Star key={s} className="w-4 h-4 text-gold fill-gold" />
-                  ))}
-                </div>
+              <div className="w-56 h-72 md:w-64 md:h-80 rounded-2xl border-2 border-gold/50 glow-border overflow-hidden">
+                <Image
+                  src="/images/daniela-silva.jpeg"
+                  alt="Daniela Silva - Estratega Digital y Creadora de Llave Digital 3.0"
+                  width={256}
+                  height={320}
+                  className="w-full h-full object-cover object-top"
+                  priority
+                />
               </div>
               <div className="absolute -inset-1 bg-gradient-to-br from-gold/20 to-transparent rounded-2xl -z-10 blur-md" />
+              <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F0D0B] to-transparent rounded-b-2xl" />
             </div>
           </motion.div>
           {/* Story */}

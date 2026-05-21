@@ -7,6 +7,7 @@ const socialProofs = [
   "+2,234 personas han activado su Llave Digital",
   "+873 madres están generando ingresos mientras cuidan a sus hijos",
   "+156 personas están viendo esta página ahora mismo",
+  "Los franquiciados han facturado +$786,571 USD hasta hoy",
   "Alguien en Venezuela acaba de activar su Llave Digital hace 3 minutos",
   "Una mamá en Colombia activó su Llave Digital hace 7 minutos",
   "+1,412 mujeres ya facturan con IA desde su celular",

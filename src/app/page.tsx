@@ -8,7 +8,9 @@ import { WhoIAmSection } from "@/components/landing/WhoIAmSection";
 import { AgitationSection } from "@/components/landing/AgitationSection";
 import { CalculatorSection } from "@/components/landing/CalculatorSection";
 import { BenefitsSection } from "@/components/landing/BenefitsSection";
+import { QueRecibirasSection } from "@/components/landing/QueRecibirasSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
+import { RankingSection } from "@/components/landing/RankingSection";
 import { QuizSection } from "@/components/landing/QuizSection";
 import { PricingSection } from "@/components/landing/PricingSection";
 import { GuaranteeSection } from "@/components/landing/GuaranteeSection";
@@ -30,7 +32,9 @@ export default function Home() {
         <AgitationSection />
         <CalculatorSection />
         <BenefitsSection />
+        <QueRecibirasSection />
         <TestimonialsSection />
+        <RankingSection />
         <QuizSection />
         <PricingSection />
         <GuaranteeSection />
