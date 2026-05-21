@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLAVE DIGITAL 3.0 - Daniela Silva</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* RESET & BASE */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Inter',sans-serif; background:#0F0D0B; color:#E8E0D4; overflow-x:hidden; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:#0F0D0B; }
+::-webkit-scrollbar-thumb { background:#C9A84C; border-radius:3px; }
+
+/* TYPOGRAPHY */
+.font-serif { font-family:'Playfair Display',serif; }
+.text-gold { color:#C9A84C; }
+.text-sand { color:#E8E0D4; }
+.text-white { color:#FFFFFF; }
+.text-muted { color:#8A8278; }
+
+/* BUTTONS */
+.btn-gold {
+  display:inline-block;
+  background:linear-gradient(135deg, #C9A84C, #E8D48B, #C9A84C);
+  background-size:200% 200%;
+  animation:shimmerGold 3s ease infinite;
+  color:#0F0D0B;
+  font-weight:700;
+  padding:16px 40px;
+  border-radius:8px;
+  text-decoration:none;
+  font-size:1.05rem;
+  cursor:pointer;
+  border:none;
+  transition:all 0.3s ease;
+  box-shadow:0 4px 25px rgba(201,168,76,0.4);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.btn-gold:hover {
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 8px 40px rgba(201,168,76,0.7);
+}
+@keyframes shimmerGold {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+.btn-whatsapp {
+  display:inline-flex; align-items:center; gap:10px;
+  background:#25D366;
+  color:#fff;
+  font-weight:600;
+  padding:14px 32px;
+  border-radius:8px;
+  text-decoration:none;
+  font-size:1rem;
+  transition:all 0.3s ease;
+  border:none; cursor:pointer;
+}
+.btn-whatsapp:hover { background:#1EB954; transform:translateY(-2px); }
+.btn-outline {
+  display:inline-block;
+  border:2px solid #C9A84C;
+  color:#C9A84C;
+  font-weight:600;
+  padding:14px 36px;
+  border-radius:8px;
+  text-decoration:none;
+  font-size:1rem;
+  cursor:pointer;
+  background:transparent;
+  transition:all 0.3s ease;
+}
+.btn-outline:hover {
+  background:#C9A84C;
+  color:#0F0D0B;
+  transform:translateY(-2px);
+  box-shadow:0 6px 25px rgba(201,168,76,0.4);
+}
+
+/* CONTAINER */
+.container { max-width:1100px; margin:0 auto; padding:0 20px; }
+
+/* SECTIONS */
+section { padding:80px 0; }
+.section-title {
+  font-family:'Playfair Display',serif;
+  font-size:2.4rem;
+  font-weight:700;
+  text-align:center;
+  margin-bottom:20px;
+}
+.section-subtitle {
+  text-align:center;
+  font-size:1.1rem;
+  color:#8A8278;
+  max-width:600px;
+  margin:0 auto 50px;
+}
+
+/* ========== ANIMATIONS ========== */
+.reveal {
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+.reveal-left {
+  opacity:0;
+  transform:translateX(-60px);
+  transition:all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible {
+  opacity:1;
+  transform:translateX(0);
+}
+.reveal-right {
+  opacity:0;
+  transform:translateX(60px);
+  transition:all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.visible {
+  opacity:1;
+  transform:translateX(0);
+}
+.reveal-scale {
+  opacity:0;
+  transform:scale(0.8);
+  transition:all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale.visible {
+  opacity:1;
+  transform:scale(1);
+}
+
+/* Floating particles */
+.particles {
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
+.particle {
+  position:absolute;
+  width:3px; height:3px;
+  background:#C9A84C;
+  border-radius:50%;
+  opacity:0;
+  animation:particleFloat 6s ease-in-out infinite;
+}
+@keyframes particleFloat {
+  0% { opacity:0; transform:translateY(100vh) scale(0); }
+  20% { opacity:0.6; }
+  80% { opacity:0.3; }
+  100% { opacity:0; transform:translateY(-10vh) scale(1); }
+}
+
+/* Glow pulse */
+@keyframes glowPulse {
+  0%,100% { box-shadow:0 0 20px rgba(201,168,76,0.2); }
+  50% { box-shadow:0 0 40px rgba(201,168,76,0.5); }
+}
+
+/* Text typing cursor */
+@keyframes blink {
+  0%,100% { border-color:transparent; }
+  50% { border-color:#C9A84C; }
+}
+
+/* ========== HERO ========== */
+#hero {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  padding:40px 20px;
+}
+#hero::before {
+  content:'';
+  position:absolute;
+  top:-50%; left:-50%;
+  width:200%; height:200%;
+  background:radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 60%);
+  animation:heroGlow 8s ease-in-out infinite alternate;
+}
+#hero::after {
+  content:'';
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity:0.5;
+}
+@keyframes heroGlow {
+  0% { transform:scale(1) rotate(0deg); }
+  100% { transform:scale(1.1) rotate(5deg); }
+}
+.hero-content { position:relative; z-index:1; }
+.hero-key-wrap {
+  margin-bottom:30px;
+  animation:floatKey 3s ease-in-out infinite;
+}
+@keyframes floatKey {
+  0%,100% { transform:translateY(0) rotate(0deg); }
+  50% { transform:translateY(-15px) rotate(2deg); }
+}
+.hero-title {
+  font-family:'Playfair Display',serif;
+  font-size:3.5rem;
+  font-weight:900;
+  background:linear-gradient(135deg, #C9A84C, #E8D48B, #C9A84C, #E8D48B);
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:gradientShift 4s ease infinite;
+  margin-bottom:24px;
+}
+@keyframes gradientShift {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+.hero-subtitle {
+  font-size:1.2rem;
+  color:#E8E0D4;
+  max-width:700px;
+  margin:0 auto 20px;
+  line-height:1.8;
+}
+.hero-highlight {
+  color:#C9A84C;
+  font-weight:600;
+}
+.hero-buttons { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:35px; }
+
+/* Digital key icon */
+.digital-key-icon { width:80px; height:80px; filter:drop-shadow(0 0 20px rgba(201,168,76,0.6)); }
+.digital-key-icon-sm { width:36px; height:36px; filter:drop-shadow(0 0 10px rgba(201,168,76,0.4)); }
+.digital-key-icon-lg { width:120px; height:120px; filter:drop-shadow(0 0 30px rgba(201,168,76,0.7)); }
+
+/* ========== COUNTDOWN TIMER ========== */
+.countdown-bar {
+  background:linear-gradient(90deg, #8B0000, #C9A84C, #8B0000);
+  background-size:200% 100%;
+  animation:urgentShimmer 2s ease infinite;
+  padding:14px 20px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+@keyframes urgentShimmer {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+.countdown-bar p {
+  color:#fff;
+  font-weight:700;
+  font-size:0.95rem;
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.countdown-timer {
+  display:inline-flex;
+  gap:6px;
+  align-items:center;
+}
+.countdown-unit {
+  background:rgba(0,0,0,0.4);
+  padding:4px 8px;
+  border-radius:4px;
+  font-family:'Inter',monospace;
+  font-size:1rem;
+  min-width:36px;
+  text-align:center;
+}
+.countdown-sep {
+  color:#E8D48B;
+  font-weight:900;
+  font-size:1.1rem;
+  animation:blinkSep 1s step-end infinite;
+}
+@keyframes blinkSep {
+  0%,100% { opacity:1; }
+  50% { opacity:0.2; }
+}
+.countdown-price {
+  color:#E8D48B;
+  text-decoration:line-through;
+  opacity:0.7;
+  font-size:0.85rem;
+}
+
+/* ========== PAIN SECTION ========== */
+#pain { background:#0A0908; }
+.pain-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:24px;
+}
+.pain-card {
+  background:linear-gradient(145deg, #1A1714, #0F0D0B);
+  border:1px solid rgba(201,168,76,0.15);
+  border-radius:12px;
+  padding:28px;
+  transition:all 0.4s ease;
+  position:relative;
+  overflow:hidden;
+}
+.pain-card::before {
+  content:'';
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background:linear-gradient(90deg, transparent, rgba(201,168,76,0.05), transparent);
+  transition:left 0.6s ease;
+}
+.pain-card:hover::before {
+  left:100%;
+}
+.pain-card:hover {
+  border-color:rgba(201,168,76,0.5);
+  transform:translateY(-6px);
+  box-shadow:0 12px 35px rgba(201,168,76,0.2);
+}
+.pain-card-icon { margin-bottom:14px; }
+.pain-card h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;
+  color:#C9A84C;
+  margin-bottom:10px;
+}
+.pain-card p { font-size:0.95rem; color:#8A8278; line-height:1.6; }
+
+/* ========== WHO I AM ========== */
+#whoiam { background:#0F0D0B; }
+.whoiam-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+.whoiam-photo {
+  width:100%;
+  max-width:380px;
+  aspect-ratio:3/4;
+  border-radius:16px;
+  background:linear-gradient(145deg, #1A1714, #0F0D0B);
+  border:2px solid rgba(201,168,76,0.3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  transition:all 0.4s ease;
+  animation:glowPulse 4s ease-in-out infinite;
+}
+.whoiam-photo:hover {
+  border-color:rgba(201,168,76,0.6);
+  box-shadow:0 0 40px rgba(201,168,76,0.3);
+}
+.whoiam-photo img { width:100%; height:100%; object-fit:cover; }
+.whoiam-text h2 {
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+  color:#C9A84C;
+  margin-bottom:20px;
+}
+.whoiam-text p {
+  font-size:1rem;
+  line-height:1.8;
+  color:#E8E0D4;
+  margin-bottom:14px;
+}
+.whoiam-text .highlight {
+  color:#C9A84C;
+  font-weight:600;
+}
+
+/* ========== AGITATION ========== */
+#agitation { background:#0A0908; }
+.agitation-text {
+  max-width:750px;
+  margin:0 auto;
+  text-align:center;
+}
+.agitation-text h2 {
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;
+  color:#C9A84C;
+  margin-bottom:24px;
+}
+.agitation-text p {
+  font-size:1.05rem;
+  line-height:1.8;
+  color:#E8E0D4;
+  margin-bottom:14px;
+}
+
+/* ========== CALCULATOR ========== */
+#calculator { background:#0F0D0B; }
+.calc-wrapper {
+  max-width:600px;
+  margin:0 auto;
+  background:linear-gradient(145deg, #1A1714, #0F0D0B);
+  border:2px solid rgba(201,168,76,0.3);
+  border-radius:20px;
+  padding:40px 35px;
+  animation:glowPulse 4s ease-in-out infinite;
+}
+.calc-title {
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;
+  color:#C9A84C;
+  text-align:center;
+  margin-bottom:10px;
+}
+.calc-subtitle {
+  text-align:center;
+  color:#8A8278;
+  font-size:0.95rem;
+  margin-bottom:30px;
+}
+.calc-slider-group { margin-bottom:24px; }
+.calc-label {
+  display:flex;
+  justify-content:space-between;
+  color:#E8E0D4;
+  font-size:0.95rem;
+  margin-bottom:8px;
+}
+.calc-label span { color:#C9A84C; font-weight:700; }
+.calc-slider {
+  width:100%;
+  -webkit-appearance:none;
+  appearance:none;
+  height:6px;
+  border-radius:3px;
+  background:linear-gradient(90deg, #C9A84C, #E8D48B);
+  outline:none;
+}
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance:none;
+  width:22px; height:22px;
+  border-radius:50%;
+  background:#C9A84C;
+  cursor:pointer;
+  box-shadow:0 0 12px rgba(201,168,76,0.6);
+  transition:all 0.2s ease;
+}
+.calc-slider::-webkit-slider-thumb:hover {
+  transform:scale(1.2);
+  box-shadow:0 0 20px rgba(201,168,76,0.8);
+}
+.calc-result {
+  margin-top:30px;
+  text-align:center;
+  padding:24px;
+  background:rgba(201,168,76,0.08);
+  border-radius:12px;
+  border:1px solid rgba(201,168,76,0.2);
+}
+.calc-result-label {
+  color:#8A8278;
+  font-size:0.9rem;
+  margin-bottom:6px;
+}
+.calc-result-number {
+  font-family:'Playfair Display',serif;
+  font-size:2.8rem;
+  font-weight:900;
+  background:linear-gradient(135deg, #C9A84C, #E8D48B);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.calc-result-note {
+  color:#8A8278;
+  font-size:0.8rem;
+  margin-top:8px;
+}
+
+/* ========== BENEFITS ========== */
+#benefits { background:#0F0D0B; }
+.benefits-layout {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+.benefits-list { list-style:none; }
+.benefits-list li {
+  display:flex; align-items:flex-start; gap:16px;
+  margin-bottom:22px;
+}
+.benefits-list li .icon-wrap { flex-shrink:0; }
+.benefits-list li h4 {
+  color:#C9A84C;
+  font-size:1.05rem;
+  margin-bottom:4px;
+}
+.benefits-list li p {
+  color:#8A8278;
+  font-size:0.95rem;
+  line-height:1.5;
+}
+.benefits-mockup {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.key-mockup {
+  position:relative;
+  width:260px; height:260px;
+  display:flex; align-items:center; justify-content:center;
+}
+.key-mockup-svg {
+  width:200px; height:200px;
+  filter:drop-shadow(0 0 40px rgba(201,168,76,0.5));
+  animation:floatKey 3s ease-in-out infinite;
+}
+.key-mockup-glow {
+  position:absolute;
+  width:280px; height:280px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(201,168,76,0.2) 0%, transparent 70%);
+  animation:pulseGlow 3s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%,100% { transform:scale(1); opacity:0.5; }
+  50% { transform:scale(1.2); opacity:1; }
+}
+
+/* ========== TESTIMONIALS ========== */
+#testimonials { background:#0A0908; overflow:hidden; }
+.testimonials-wrapper {
+  position:relative;
+  overflow:hidden;
+  padding:20px 0;
+}
+.testimonials-track {
+  display:flex;
+  gap:20px;
+  animation:scrollTestimonialsLeft 35s linear infinite;
+}
+.testimonials-track:hover { animation-play-state:paused; }
+@keyframes scrollTestimonialsLeft {
+  0% { transform:translateX(0); }
+  100% { transform:translateX(-50%); }
+}
+.testimonial-card {
+  min-width:240px;
+  max-width:240px;
+  background:linear-gradient(145deg, #1A1714, #0F0D0B);
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:14px;
+  padding:22px;
+  flex-shrink:0;
+  transition:all 0.3s ease;
+}
+.testimonial-card:hover {
+  border-color:rgba(201,168,76,0.5);
+  transform:scale(1.03);
+  box-shadow:0 8px 25px rgba(201,168,76,0.15);
+}
+.testimonial-avatar {
+  width:50px; height:50px;
+  border-radius:50%;
+  border:2px solid #C9A84C;
+  object-fit:cover;
+  margin-bottom:10px;
+}
+.testimonial-name {
+  color:#C9A84C;
+  font-weight:600;
+  font-size:0.9rem;
+  margin-bottom:3px;
+}
+.testimonial-ig {
+  color:#E1306C;
+  font-size:0.75rem;
+  margin-bottom:8px;
+}
+.testimonial-text {
+  color:#E8E0D4;
+  font-size:0.85rem;
+  line-height:1.5;
+  font-style:italic;
+}
+.testimonial-stars {
+  color:#C9A84C;
+  font-size:0.8rem;
+  margin-bottom:6px;
+}
+
+/* ========== QUIZ ========== */
+#quiz { background:#0F0D0B; }
+.quiz-container {
+  max-width:650px;
+  margin:0 auto;
+  position:relative;
+}
+.quiz-step { display:none; }
+.quiz-step.active {
+  display:block;
+  animation:fadeInUp 0.5s ease;
+}
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.quiz-question {
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;
+  color:#C9A84C;
+  margin-bottom:30px;
+  text-align:center;
+}
+.quiz-options { display:flex; flex-direction:column; gap:12px; }
+.quiz-option {
+  background:linear-gradient(145deg, #1A1714, #0F0D0B);
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:10px;
+  padding:16px 22px;
+  color:#E8E0D4;
+  font-size:0.95rem;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  text-align:left;
+}
+.quiz-option:hover, .quiz-option.selected {
+  border-color:#C9A84C;
+  background:rgba(201,168,76,0.1);
+  transform:translateX(4px);
+}
+.quiz-progress {
+  width:100%;
+  height:4px;
+  background:#1A1714;
+  border-radius:2px;
+  margin-bottom:30px;
+}
+.quiz-progress-bar {
+  height:100%;
+  background:linear-gradient(90deg, #C9A84C, #E8D48B);
+  border-radius:2px;
+  transition:width 0.5s ease;
+}
+.quiz-nav {
+  display:flex; justify-content:space-between; margin-top:24px;
+}
+.quiz-result-score {
+  font-size:3.5rem;
+  font-weight:900;
+  font-family:'Playfair Display',serif;
+  background:linear-gradient(135deg, #C9A84C, #E8D48B);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.quiz-lead-form input {
+  width:100%;
+  padding:14px 18px;
+  border-radius:8px;
+  border:1px solid rgba(201,168,76,0.3);
+  background:#1A1714;
+  color:#E8E0D4;
+  font-size:1rem;
+  margin-bottom:12px;
+  transition:border-color 0.3s ease;
+}
+.quiz-lead-form input:focus {
+  outline:none;
+  border-color:#C9A84C;
+  box-shadow:0 0 15px rgba(201,168,76,0.2);
+}
+
+/* ========== PRICING ========== */
+#pricing { background:#0A0908; }
+.pricing-card {
+  max-width:500px;
+  margin:0 auto;
+  background:linear-gradient(145deg, #1A1714, #0F0D0B);
+  border:2px solid #C9A84C;
+  border-radius:20px;
+  padding:50px 40px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  animation:glowPulse 4s ease-in-out infinite;
+}
+.pricing-card::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:4px;
+  background:linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+  background-size:200% 100%;
+  animation:shimmerGold 2s ease infinite;
+}
+.pricing-badge {
+  display:inline-block;
+  background:rgba(201,168,76,0.15);
+  border:1px solid rgba(201,168,76,0.3);
+  color:#C9A84C;
+  font-size:0.85rem;
+  font-weight:600;
+  padding:6px 16px;
+  border-radius:20px;
+  margin-bottom:16px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.pricing-amount {
+  font-size:3rem;
+  font-weight:900;
+  font-family:'Playfair Display',serif;
+  color:#C9A84C;
+  margin:20px 0 5px;
+}
+.pricing-old {
+  color:#8A8278;
+  text-decoration:line-through;
+  font-size:1.1rem;
+  margin-bottom:10px;
+}
+.pricing-features {
+  list-style:none;
+  text-align:left;
+  margin-bottom:30px;
+}
+.pricing-features li {
+  display:flex; align-items:center; gap:12px;
+  padding:10px 0;
+  border-bottom:1px solid rgba(201,168,76,0.1);
+  color:#E8E0D4;
+  font-size:0.95rem;
+}
+.pricing-features li .check {
+  color:#C9A84C;
+  font-weight:bold;
+  font-size:1.1rem;
+}
+
+/* ========== GUARANTEE ========== */
+#guarantee { background:#0F0D0B; }
+.guarantee-box {
+  max-width:700px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg, #1A1714, #0F0D0B);
+  border:1px solid rgba(201,168,76,0.3);
+  border-radius:16px;
+  padding:40px;
+}
+.guarantee-seal {
+  width:100%;
+  max-width:420px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+}
+.guarantee-seal-icon {
+  width:140px; height:140px;
+  filter:drop-shadow(0 0 30px rgba(201,168,76,0.5));
+  animation:glowPulse 4s ease-in-out infinite;
+}
+.guarantee-seal h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;
+  color:#C9A84C;
+  text-align:center;
+}
+
+/* ========== RETO 21 DIAS ========== */
+#reto21 { background:#0A0908; }
+.reto21-layout {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+.reto21-video {
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:16px;
+  overflow:hidden;
+  border:2px solid rgba(201,168,76,0.3);
+  background:#1A1714;
+}
+.reto21-video iframe {
+  width:100%;
+  height:100%;
+  border:none;
+}
+.reto21-content h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;
+  color:#C9A84C;
+  margin-bottom:14px;
+}
+.reto21-content p {
+  color:#E8E0D4;
+  font-size:0.95rem;
+  line-height:1.7;
+  margin-bottom:14px;
+}
+.reto21-price {
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;
+  font-weight:900;
+  color:#C9A84C;
+  margin:8px 0 20px;
+}
+.reto21-badge {
+  display:inline-block;
+  background:rgba(201,168,76,0.15);
+  border:1px solid rgba(201,168,76,0.3);
+  color:#C9A84C;
+  font-size:0.8rem;
+  font-weight:600;
+  padding:5px 14px;
+  border-radius:20px;
+  margin-bottom:12px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+/* ========== SERVICES ========== */
+#services { background:#0F0D0B; }
+.services-layout {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+.services-photo {
+  width:100%;
+  max-width:380px;
+  aspect-ratio:3/4;
+  border-radius:16px;
+  background:linear-gradient(145deg, #1A1714, #0F0D0B);
+  border:2px solid rgba(201,168,76,0.3);
+  overflow:hidden;
+  transition:all 0.4s ease;
+  animation:glowPulse 4s ease-in-out infinite;
+}
+.services-photo:hover {
+  border-color:rgba(201,168,76,0.6);
+  box-shadow:0 0 40px rgba(201,168,76,0.3);
+}
+.services-photo img { width:100%; height:100%; object-fit:cover; }
+.services-content h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;
+  color:#C9A84C;
+  margin-bottom:18px;
+}
+.services-list {
+  list-style:none;
+  margin-bottom:24px;
+}
+.services-list li {
+  display:flex; align-items:flex-start; gap:12px;
+  margin-bottom:16px;
+  color:#E8E0D4;
+  font-size:0.95rem;
+  line-height:1.6;
+}
+.services-list li .svc-icon {
+  flex-shrink:0;
+  width:28px; height:28px;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(201,168,76,0.15);
+  border-radius:50%;
+  color:#C9A84C;
+  font-size:0.8rem;
+  font-weight:700;
+}
+
+/* ========== FAQ ========== */
+#faq { background:#0A0908; }
+.faq-container { max-width:650px; margin:0 auto; }
+.faq-item {
+  margin-bottom:10px;
+  background:linear-gradient(145deg, #1A1714, #0F0D0B);
+  border:1px solid rgba(201,168,76,0.12);
+  border-radius:8px;
+  overflow:hidden;
+}
+.faq-question {
+  padding:14px 18px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:#C9A84C;
+  font-weight:600;
+  font-size:0.88rem;
+  transition:background 0.3s ease;
+}
+.faq-question:hover { background:rgba(201,168,76,0.05); }
+.faq-question .arrow {
+  transition:transform 0.3s ease;
+  font-size:0.8rem;
+}
+.faq-question.open .arrow { transform:rotate(180deg); }
+.faq-answer {
+  padding:0 18px;
+  max-height:0;
+  overflow:hidden;
+  transition:all 0.4s ease;
+  color:#E8E0D4;
+  font-size:0.85rem;
+  line-height:1.5;
+}
+.faq-answer.open {
+  padding:0 18px 14px;
+  max-height:250px;
+}
+
+/* ========== FINAL CTA ========== */
+#final-cta {
+  background:linear-gradient(180deg, #0F0D0B, #1A1714, #0F0D0B);
+  text-align:center;
+  padding:100px 20px;
+}
+.final-cta-title {
+  font-family:'Playfair Display',serif;
+  font-size:2.4rem;
+  color:#C9A84C;
+  margin-bottom:20px;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background:#0A0908;
+  padding:40px 20px;
+  text-align:center;
+}
+.footer-social {
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:20px;
+}
+.footer-social a {
+  width:44px; height:44px;
+  display:flex; align-items:center; justify-content:center;
+  color:#C9A84C;
+  border:1px solid rgba(201,168,76,0.3);
+  border-radius:50%;
+  transition:all 0.3s ease;
+  text-decoration:none;
+}
+.footer-social a:hover {
+  color:#E8D48B;
+  border-color:#C9A84C;
+  background:rgba(201,168,76,0.1);
+  transform:scale(1.15);
+}
+.footer-social svg { width:20px; height:20px; fill:currentColor; }
+.footer-links {
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:16px;
+  flex-wrap:wrap;
+}
+.footer-links a {
+  color:#8A8278;
+  text-decoration:none;
+  font-size:0.85rem;
+  transition:color 0.3s ease;
+}
+.footer-links a:hover { color:#C9A84C; }
+.footer-copy { color:#8A8278; font-size:0.8rem; }
+
+/* FLOATING WHATSAPP */
+.float-wa {
+  position:fixed;
+  bottom:24px; right:24px;
+  z-index:9999;
+  width:60px; height:60px;
+  border-radius:50%;
+  background:#25D366;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,0.4);
+  transition:all 0.3s ease;
+  cursor:pointer;
+  text-decoration:none;
+  animation:waFloat 2s ease-in-out infinite;
+}
+.float-wa:hover { transform:scale(1.15); box-shadow:0 6px 30px rgba(37,211,102,0.6); }
+@keyframes waFloat {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-6px); }
+}
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+  .hero-title { font-size:2.2rem; }
+  .hero-subtitle { font-size:1rem; }
+  .whoiam-grid { grid-template-columns:1fr; text-align:center; }
+  .whoiam-photo { margin:0 auto; }
+  .benefits-layout { grid-template-columns:1fr; }
+  .benefits-mockup { margin-top:30px; }
+  .guarantee-box { flex-direction:column; text-align:center; }
+  .guarantee-seal-icon { width:100px; height:100px; }
+  .section-title { font-size:1.7rem; }
+  .pricing-card { padding:30px 20px; }
+  .pricing-amount { font-size:2.2rem; }
+  .testimonial-card { min-width:200px; max-width:200px; padding:16px; }
+  .countdown-bar p { font-size:0.8rem; }
+  .calc-wrapper { padding:28px 20px; }
+  .reto21-layout { grid-template-columns:1fr; }
+  .services-layout { grid-template-columns:1fr; text-align:center; }
+  .services-photo { margin:0 auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING PARTICLES -->
+<div class="particles" id="particles"></div>
+
+<!-- SVG DEFS -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <!-- DIGITAL KEY ICON -->
+    <symbol id="icon-digital-key" viewBox="0 0 100 100">
+      <rect x="15" y="25" width="70" height="50" rx="8" fill="none" stroke="#C9A84C" stroke-width="2.5"/>
+      <rect x="22" y="32" width="20" height="14" rx="3" fill="#C9A84C" opacity="0.3"/>
+      <circle cx="62" cy="39" r="7" fill="none" stroke="#C9A84C" stroke-width="2"/>
+      <circle cx="62" cy="39" r="3" fill="#C9A84C"/>
+      <rect x="22" y="54" width="30" height="6" rx="2" fill="#C9A84C" opacity="0.4"/>
+      <rect x="58" y="54" width="12" height="6" rx="2" fill="#C9A84C" opacity="0.4"/>
+      <line x1="15" y1="48" x2="85" y2="48" stroke="#C9A84C" stroke-width="0.5" opacity="0.3"/>
+    </symbol>
+    <!-- CHECK -->
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11" fill="#C9A84C" opacity="0.15"/>
+      <path d="M7 12l3 3 7-7" stroke="#C9A84C" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- SHIELD -->
+    <symbol id="icon-shield" viewBox="0 0 64 64">
+      <path d="M32 4 L58 18 V36 C58 50 32 60 32 60 S6 50 6 36 V18 Z" fill="none" stroke="#C9A84C" stroke-width="2.5"/>
+      <path d="M22 32 L28 38 L42 24" stroke="#C9A84C" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ==================== COUNTDOWN BAR ==================== -->
+<div class="countdown-bar" id="countdownBar">
+  <p>
+    <span>&#9889; OFERTA ESPECIAL &#9889;</span>
+    <span class="countdown-price">$297</span>
+    <span>Precio actual: <strong>$97</strong> | Sube en:</span>
+    <span class="countdown-timer" id="countdownTimer">
+      <span class="countdown-unit" id="cdHours">00</span>
+      <span class="countdown-sep">:</span>
+      <span class="countdown-unit" id="cdMinutes">00</span>
+      <span class="countdown-sep">:</span>
+      <span class="countdown-unit" id="cdSeconds">00</span>
+    </span>
+  </p>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-key-wrap reveal-scale">
+      <svg class="digital-key-icon-lg"><use href="#icon-digital-key"/></svg>
+    </div>
+    <h1 class="hero-title reveal">LLAVE DIGITAL 3.0</h1>
+    <p class="hero-subtitle reveal">
+      Tú que nunca te diste el lujo de rendirte. Tú que inventas, resuelves, aguantas. <span class="hero-highlight">La inteligencia artificial no es tu competencia, es tu aliada más poderosa.</span> Y con el sistema correcto, puedes convertir tu celular en una máquina de ingresos desde casa. Sin experiencia técnica. Sin pedir permiso. <span class="hero-highlight">Tu turno es ahora.</span>
+    </p>
+    <div class="hero-buttons reveal">
+      <a href="#quiz" class="btn-gold">Descubre si es para ti</a>
+      <a href="https://go.hotmart.com/S105487769E?ap=15e3" class="btn-outline" target="_blank">Activar mi Llave Digital</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PAIN ==================== -->
+<section id="pain">
+  <div class="container">
+    <h2 class="section-title text-gold reveal">&iquest;Vives o Sobrevives?</h2>
+    <p class="section-subtitle reveal">LA REALIDAD QUE NADIE VE</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal-left">
+        <div class="pain-card-icon"><svg class="digital-key-icon-sm"><use href="#icon-digital-key"/></svg></div>
+        <h3>Cada vez que llegas a la caja a pagar y te toca sacar del carrito porque no te alcanza</h3>
+        <p>Esa incomodidad no es casualidad. Es la se&ntilde;al de que necesitas un cambio real en tus ingresos.</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-card-icon"><svg class="digital-key-icon-sm"><use href="#icon-digital-key"/></svg></div>
+        <h3>Cada vez que dices "no necesito eso" cuando s&iacute; lo necesitas</h3>
+        <p>Te convences de que puedes vivir sin lo que realmente mereces. Pero en el fondo sabes que mereces m&aacute;s.</p>
+      </div>
+      <div class="pain-card reveal-right">
+        <div class="pain-card-icon"><svg class="digital-key-icon-sm"><use href="#icon-digital-key"/></svg></div>
+        <h3>Cada noche que no duermes pensando c&oacute;mo vas a comprarle algo a tu hijo</h3>
+        <p>Esas noches sin dormir son la se&ntilde;al de que debes darle un giro a tu vida. Ya es hora de actuar.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;" class="reveal">
+      <a href="https://go.hotmart.com/S105487769E?ap=15e3" class="btn-gold" target="_blank">Quiero cambiar mi realidad</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHO I AM ==================== -->
+<section id="whoiam">
+  <div class="container">
+    <h2 class="section-title text-gold reveal">&iquest;QUI&Eacute;N SOY Y POR QU&Eacute; DEBER&Iacute;AS ESCUCHARME?</h2>
+    <div class="whoiam-grid">
+      <div class="whoiam-photo reveal-left">
+        <img src="daniela-sobre-mi.jpg" alt="Daniela Silva - Estratega Digital">
+      </div>
+      <div class="whoiam-text reveal-right">
+        <p>No soy una <span class="highlight">influencer millonaria</span>. Soy una mujer que migr&oacute;, trabaj&oacute; de lo que saliera, ahorr&oacute; e invirti&oacute; en conocimientos. La pandemia me dej&oacute; sin ingresos y me oblig&oacute; a reinventarme en el mundo digital. Obtuve una beca, luego un capital para emprendimiento, y as&iacute; naci&oacute; mi propia agencia de Estrategias Digitales.</p>
+        <p>Al regresar a Venezuela con problemas de luz e internet, tuve que reinventarme <span class="highlight">otra vez</span>. Lleg&oacute; a m&iacute; <span class="highlight">La Franquicia IA</span>, la automatizc&eacute;, y hoy facturo en piloto autom&aacute;tico. Cre&eacute; mi <span class="highlight">comunidad 3.0</span> para acompa&ntilde;ar a quienes necesitan gu&iacute;a real. La IA no vino a quitarme el trabajo, <span class="highlight">vino a darme el m&iacute;o</span>.</p>
+        <p>Hoy soy afiliada de La Franquicia IA de Tata Salazar y acompa&ntilde;o personalmente a cada mujer que dice "ya no puedo m&aacute;s". Porque yo viv&iacute; eso. <span class="highlight">No est&aacute;s sola. Yo te gu&iacute;o.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== AGITATION ==================== -->
+<section id="agitation">
+  <div class="container">
+    <div class="agitation-text">
+      <h2 class="reveal">El momento de decidir es ahora</h2>
+      <p class="reveal">Puedes seguir navegando, viendo historias de &eacute;xito de otros, esperando que algo cambie solo. Pero te aseguro que en un a&ntilde;o vas a desear haber empezado hoy.</p>
+      <p class="reveal">La econom&iacute;a cambia, las oportunidades se mueven, y cada d&iacute;a que esperas es un d&iacute;a que alguien m&aacute;s est&aacute; ocupando el espacio que pudo ser tuyo.</p>
+      <p class="reveal">No se trata de suerte. Se trata de tener la llave correcta y dar el paso.</p>
+      <div style="text-align:center; margin-top:30px;" class="reveal">
+        <a href="https://go.hotmart.com/S105487769E?ap=15e3" class="btn-gold" target="_blank">Activar mi Llave Digital</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CALCULATOR ==================== -->
+<section id="calculator">
+  <div class="container">
+    <h2 class="section-title text-gold reveal">Calcula tu potencial de ingresos</h2>
+    <p class="section-subtitle reveal">Descubre cu&aacute;nto podr&iacute;as generar con Llave Digital 3.0</p>
+    <div class="calc-wrapper reveal-scale">
+      <div class="calc-title">&iquest;Cu&aacute;ntas ventas podr&iacute;as hacer al mes?</div>
+      <div class="calc-subtitle">Arrastra el slider y descubre tu potencial</div>
+      <div class="calc-slider-group">
+        <div class="calc-label">
+          <span>Ventas mensuales</span>
+          <span id="calcVentas">5</span>
+        </div>
+        <input type="range" class="calc-slider" id="calcSlider" min="1" max="30" value="5">
+      </div>
+      <div class="calc-result">
+        <div class="calc-result-label">Tu ingreso potencial mensual</div>
+        <div class="calc-result-number" id="calcResult">$485</div>
+        <div class="calc-result-note">*Basado en comisi&oacute;n promedio de $97 por venta</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BENEFITS ==================== -->
+<section id="benefits">
+  <div class="container">
+    <h2 class="section-title text-gold reveal">Lo que obtienes</h2>
+    <p class="section-subtitle reveal">Todo lo que incluye tu acceso a Llave Digital 3.0</p>
+    <div class="benefits-layout">
+      <ul class="benefits-list">
+        <li class="reveal-left">
+          <span class="icon-wrap"><svg class="digital-key-icon-sm"><use href="#icon-digital-key"/></svg></span>
+          <div>
+            <h4>Acceso completo a La Franquicia IA</h4>
+            <p>El sistema de Tata Salazar que se vende solo, en piloto autom&aacute;tico con inteligencia artificial.</p>
+          </div>
+        </li>
+        <li class="reveal-left">
+          <span class="icon-wrap"><svg class="digital-key-icon-sm"><use href="#icon-digital-key"/></svg></span>
+          <div>
+            <h4>Comunidad 3.0 exclusiva</h4>
+            <p>Acompa&ntilde;amiento, motivaci&oacute;n y la ruta creada por Daniela paso a paso.</p>
+          </div>
+        </li>
+        <li class="reveal-left">
+          <span class="icon-wrap"><svg class="digital-key-icon-sm"><use href="#icon-digital-key"/></svg></span>
+          <div>
+            <h4>Automatizaci&oacute;n con IA</h4>
+            <p>Tu negocio trabajando por ti las 24 horas, sin necesidad de experiencia t&eacute;cnica.</p>
+          </div>
+        </li>
+        <li class="reveal-left">
+          <span class="icon-wrap"><svg class="digital-key-icon-sm"><use href="#icon-digital-key"/></svg></span>
+          <div>
+            <h4>Soporte personalizado</h4>
+            <p>Daniela te gu&iacute;a directamente. No est&aacute;s sola en este camino.</p>
+          </div>
+        </li>
+        <li class="reveal-left">
+          <span class="icon-wrap"><svg class="digital-key-icon-sm"><use href="#icon-digital-key"/></svg></span>
+          <div>
+            <h4>Desde tu celular</h4>
+            <p>Sin computadora, sin inversi&oacute;n adicional, sin pedir permiso.</p>
+          </div>
+        </li>
+      </ul>
+      <div class="benefits-mockup reveal-right">
+        <div class="key-mockup">
+          <div class="key-mockup-glow"></div>
+          <svg class="key-mockup-svg"><use href="#icon-digital-key"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TESTIMONIALS ==================== -->
+<section id="testimonials">
+  <div class="container">
+    <h2 class="section-title text-gold reveal">Lo que dicen quienes ya entraron</h2>
+    <p class="section-subtitle reveal">Resultados reales de mujeres que dijeron "ya no puedo m&aacute;s" y actuaron</p>
+  </div>
+  <div class="testimonials-wrapper">
+    <div class="testimonials-track" id="testimonialsTrack">
+      <!-- Testimonials duplicated for infinite scroll -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=MC" alt="Mar&iacute;a C.">
+        <div class="testimonial-name">Mar&iacute;a C.</div>
+        <div class="testimonial-ig">@maria.conecta</div>
+        <div class="testimonial-text">"Nunca pens&eacute; que desde mi celular podr&iacute;a generar ingresos. En 2 semanas ya ten&iacute;a mi primera venta. Daniela te explica todo super claro."</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=LR" alt="Luisa R.">
+        <div class="testimonial-name">Luisa R.</div>
+        <div class="testimonial-ig">@luisa.reinventa</div>
+        <div class="testimonial-text">"Yo no sab&iacute;a nada de IA ni de ventas online. La comunidad de Daniela me tom&oacute; de la mano. Hoy facturo desde casa y le dedico tiempo a mi familia."</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=CP" alt="Carmen P.">
+        <div class="testimonial-name">Carmen P.</div>
+        <div class="testimonial-ig">@carmen.prospera</div>
+        <div class="testimonial-text">"Ten&iacute;a miedo de invertir otra vez en algo que no funcionara. Pero esto es real. La IA hace el trabajo y yo solo sigo los pasos. &iexcl;Ya van 8 ventas!"</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=AG" alt="Ana G.">
+        <div class="testimonial-name">Ana G.</div>
+        <div class="testimonial-ig">@ana.growdigital</div>
+        <div class="testimonial-text">"Soy mam&aacute; de dos ni&ntilde;os y no ten&iacute;a tiempo. Con Llave Digital configur&eacute; todo en una tarde. A los 10 d&iacute;as ya ten&iacute;a resultados. Incre&iacute;ble."</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=RM" alt="Rosa M.">
+        <div class="testimonial-name">Rosa M.</div>
+        <div class="testimonial-ig">@rosa.millonaria</div>
+        <div class="testimonial-text">"Despu&eacute;s de tantos cursos vac&iacute;os, por fin encontr&eacute; algo con sustancia. Daniela no te deja sola, te acompa&ntilde;a de verdad."</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=PV" alt="Patricia V.">
+        <div class="testimonial-name">Patricia V.</div>
+        <div class="testimonial-ig">@patricia.vive</div>
+        <div class="testimonial-text">"Vivo en Venezuela con todos los problemas de luz e internet y aun as&iacute; facturo. Si yo puedo, t&uacute; tambi&eacute;n. Solo necesitas decidirte."</div>
+      </div>
+      <!-- DUPLICATE FOR INFINITE SCROLL -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=MC" alt="Mar&iacute;a C.">
+        <div class="testimonial-name">Mar&iacute;a C.</div>
+        <div class="testimonial-ig">@maria.conecta</div>
+        <div class="testimonial-text">"Nunca pens&eacute; que desde mi celular podr&iacute;a generar ingresos. En 2 semanas ya ten&iacute;a mi primera venta. Daniela te explica todo super claro."</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=LR" alt="Luisa R.">
+        <div class="testimonial-name">Luisa R.</div>
+        <div class="testimonial-ig">@luisa.reinventa</div>
+        <div class="testimonial-text">"Yo no sab&iacute;a nada de IA ni de ventas online. La comunidad de Daniela me tom&oacute; de la mano. Hoy facturo desde casa y le dedico tiempo a mi familia."</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=CP" alt="Carmen P.">
+        <div class="testimonial-name">Carmen P.</div>
+        <div class="testimonial-ig">@carmen.prospera</div>
+        <div class="testimonial-text">"Ten&iacute;a miedo de invertir otra vez en algo que no funcionara. Pero esto es real. La IA hace el trabajo y yo solo sigo los pasos. &iexcl;Ya van 8 ventas!"</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=AG" alt="Ana G.">
+        <div class="testimonial-name">Ana G.</div>
+        <div class="testimonial-ig">@ana.growdigital</div>
+        <div class="testimonial-text">"Soy mam&aacute; de dos ni&ntilde;os y no ten&iacute;a tiempo. Con Llave Digital configur&eacute; todo en una tarde. A los 10 d&iacute;as ya ten&iacute;a resultados. Incre&iacute;ble."</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=RM" alt="Rosa M.">
+        <div class="testimonial-name">Rosa M.</div>
+        <div class="testimonial-ig">@rosa.millonaria</div>
+        <div class="testimonial-text">"Despu&eacute;s de tantos cursos vac&iacute;os, por fin encontr&eacute; algo con sustancia. Daniela no te deja sola, te acompa&ntilde;a de verdad."</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <img class="testimonial-avatar" src="https://placehold.co/80x80/1A1714/C9A84C?text=PV" alt="Patricia V.">
+        <div class="testimonial-name">Patricia V.</div>
+        <div class="testimonial-ig">@patricia.vive</div>
+        <div class="testimonial-text">"Vivo en Venezuela con todos los problemas de luz e internet y aun as&iacute; facturo. Si yo puedo, t&uacute; tambi&eacute;n. Solo necesitas decidirte."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== QUIZ ==================== -->
+<section id="quiz">
+  <div class="container">
+    <h2 class="section-title text-gold reveal">&iquest;Es Llave Digital para ti?</h2>
+    <p class="section-subtitle reveal">Responde 4 preguntas y descubre si est&aacute;s lista</p>
+    <div class="quiz-container reveal-scale">
+      <!-- Step 1 -->
+      <div class="quiz-step active" data-step="1">
+        <div class="quiz-progress"><div class="quiz-progress-bar" style="width:25%"></div></div>
+        <div class="quiz-question">&iquest;Necesitas generar ingresos extras desde casa?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="yes" onclick="selectOption(this)">S&iacute;, es urgente para m&iacute;</div>
+          <div class="quiz-option" data-value="maybe" onclick="selectOption(this)">Me gustar&iacute;a, pero no s&eacute; por d&oacute;nde empezar</div>
+          <div class="quiz-option" data-value="no" onclick="selectOption(this)">No realmente</div>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div class="quiz-step" data-step="2">
+        <div class="quiz-progress"><div class="quiz-progress-bar" style="width:50%"></div></div>
+        <div class="quiz-question">&iquest;Tienes un celular con internet?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="yes" onclick="selectOption(this)">S&iacute;, obvio</div>
+          <div class="quiz-option" data-value="maybe" onclick="selectOption(this)">S&iacute;, pero a veces falla la conexi&oacute;n</div>
+          <div class="quiz-option" data-value="no" onclick="selectOption(this)">No tengo internet estable</div>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div class="quiz-step" data-step="3">
+        <div class="quiz-progress"><div class="quiz-progress-bar" style="width:75%"></div></div>
+        <div class="quiz-question">&iquest;Est&aacute;s dispuesta a seguir pasos claros aunque tengas miedo?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="yes" onclick="selectOption(this)">S&iacute;, estoy lista para cambiar</div>
+          <div class="quiz-option" data-value="maybe" onclick="selectOption(this)">Tengo miedo pero quiero intentar</div>
+          <div class="quiz-option" data-value="no" onclick="selectOption(this)">No s&eacute; si estoy lista</div>
+        </div>
+      </div>
+      <!-- Step 4 -->
+      <div class="quiz-step" data-step="4">
+        <div class="quiz-progress"><div class="quiz-progress-bar" style="width:100%"></div></div>
+        <div class="quiz-question">&iquest;Invertir&iacute;as en ti si ves que funciona de verdad?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="yes" onclick="selectOption(this)">S&iacute;, si veo resultados reales</div>
+          <div class="quiz-option" data-value="maybe" onclick="selectOption(this)">Depende de la inversi&oacute;n</div>
+          <div class="quiz-option" data-value="no" onclick="selectOption(this)">No tengo c&oacute;mo invertir ahora</div>
+        </div>
+      </div>
+      <!-- Result -->
+      <div class="quiz-step" data-step="result">
+        <div style="text-align:center;">
+          <div class="quiz-result-score" id="quizScoreText">&#161;S&Iacute; ES PARA TI!</div>
+          <p style="color:#E8E0D4; font-size:1.1rem; margin:20px 0 30px;" id="quizResultMsg">Llave Digital 3.0 fue creado exactamente para alguien como t&uacute;. No necesitas experiencia, solo decisi&oacute;n.</p>
+          <div class="quiz-lead-form">
+            <input type="text" id="quizName" placeholder="Tu nombre">
+            <input type="email" id="quizEmail" placeholder="Tu email">
+          </div>
+          <a href="https://go.hotmart.com/S105487769E?ap=15e3" class="btn-gold" target="_blank" style="margin-top:10px;">Activar mi Llave Digital ahora</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PRICING ==================== -->
+<section id="pricing">
+  <div class="container">
+    <h2 class="section-title text-gold reveal">Tu inversi&oacute;n</h2>
+    <p class="section-subtitle reveal">Todo lo que necesitas para empezar hoy</p>
+    <div class="pricing-card reveal-scale">
+      <div class="pricing-badge">&#161;OFERTA POR TIEMPO LIMITADO!</div>
+      <div class="pricing-old">$297</div>
+      <div class="pricing-amount">$97</div>
+      <p style="color:#8A8278; margin-bottom:24px;">Pago &uacute;nico &bull; Acceso de por vida</p>
+      <ul class="pricing-features">
+        <li><span class="check">&#10003;</span> Acceso completo a La Franquicia IA</li>
+        <li><span class="check">&#10003;</span> Comunidad 3.0 exclusiva con Daniela</li>
+        <li><span class="check">&#10003;</span> Automatizaci&oacute;n con IA paso a paso</li>
+        <li><span class="check">&#10003;</span> Soporte y acompa&ntilde;amiento personalizado</li>
+        <li><span class="check">&#10003;</span> Ruta creada por Daniela Silva</li>
+        <li><span class="check">&#10003;</span> Actualizaciones gratuitas</li>
+        <li><span class="check">&#10003;</span> Garant&iacute;a de 7 d&iacute;as</li>
+      </ul>
+      <a href="https://go.hotmart.com/S105487769E?ap=15e3" class="btn-gold" target="_blank" style="width:100%; text-align:center;">&#161;LA ACTIVO AHORA!</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GUARANTEE ==================== -->
+<section id="guarantee">
+  <div class="container">
+    <div class="guarantee-box reveal-scale">
+      <div class="guarantee-seal">
+        <svg class="guarantee-seal-icon" viewBox="0 0 64 64"><use href="#icon-shield"/></svg>
+        <h3>Garant&iacute;a de 7 d&iacute;as sin riesgo</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== RETO 21 DÍAS ==================== -->
+<section id="reto21">
+  <div class="container">
+    <h2 class="section-title text-gold reveal">RETO 21 D&Iacute;AS</h2>
+    <p class="section-subtitle reveal">Aprende y crea contenido impactante y en tendencia con IA</p>
+    <div class="reto21-layout">
+      <div class="reto21-video reveal-left">
+        <iframe src="https://drive.google.com/file/d/1JJSBXPgDc34If9eiuiu1R2R0WfCZm0tF/preview" allow="autoplay" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="reto21-content reveal-right">
+        <div class="reto21-badge">OFERTA ESPECIAL</div>
+        <h3>21 d&iacute;as para transformar tu contenido con IA</h3>
+        <p>Ideal para aprender y crear contenido impactante y en tendencia con inteligencia artificial. Contenido que puedes monetizar <span class="highlight">revendiendo el curso</span> o aplicando esos conocimientos para crear contenido para ti o tus clientes.</p>
+        <p>Aprende las t&eacute;cnicas m&aacute;s actuales de creaci&oacute;n de contenido con IA, desde tu celular, sin experiencia previa. En 21 d&iacute;as tendr&aacute;s las herramientas para generar ingresos creando contenido que vende.</p>
+        <div class="reto21-price">$69</div>
+        <a href="https://go.hotmart.com/S105487769E?ap=15e3" class="btn-gold" target="_blank" style="margin-right:12px;">&iexcl;ME APUNTO AL RETO!</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MIS SERVICIOS ==================== -->
+<section id="services">
+  <div class="container">
+    <h2 class="section-title text-gold reveal">Mis Servicios Profesionales</h2>
+    <p class="section-subtitle reveal">Estrategia digital que transforma negocios</p>
+    <div class="services-layout">
+      <div class="services-photo reveal-left">
+        <img src="daniela-servicios.jpg" alt="Daniela Silva - Estratega Digital">
+      </div>
+      <div class="services-content reveal-right">
+        <h3>Automatizo, dise&ntilde;o y potencializo tu negocio</h3>
+        <ul class="services-list">
+          <li>
+            <span class="svc-icon">&#9889;</span>
+            <span><strong style="color:#C9A84C">Automatizo negocios:</strong> Sistemas que trabajan por ti 24/7, reduciendo tu carga de trabajo y aumentando tus ventas sin que est&eacute;s presente.</span>
+          </li>
+          <li>
+            <span class="svc-icon">&#9733;</span>
+            <span><strong style="color:#C9A84C">Dise&ntilde;o ultra moderno:</strong> Sitios y tiendas en l&iacute;nea con dise&ntilde;o premium que vende m&aacute;s, conecta con tu audiencia y posiciona tu marca como l&iacute;der.</span>
+          </li>
+          <li>
+            <span class="svc-icon">&#9881;</span>
+            <span><strong style="color:#C9A84C">Agentes de IA:</strong> Creo agentes inteligentes que hacen m&aacute;s de la mitad de tu trabajo: atenci&oacute;n al cliente, contenido, seguimiento y cierre de ventas.</span>
+          </li>
+          <li>
+            <span class="svc-icon">&#128197;</span>
+            <span><strong style="color:#C9A84C">Apps de agendamiento:</strong> Aplicaciones para agendar servicios con pagos integrados, optimizando tu operaci&oacute;n y mejorando la experiencia de tus clientes.</span>
+          </li>
+        </ul>
+        <a href="https://wa.me/584221754245?text=Hola%20Daniela%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20tus%20servicios%20profesionales" class="btn-outline" target="_blank">M&Aacute;S SERVICIOS E INFO</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FINAL CTA ==================== -->
+<section id="final-cta">
+  <div class="container">
+    <h2 class="final-cta-title reveal">Tu turno es ahora</h2>
+    <p class="reveal" style="font-size:1.15rem; color:#E8E0D4; max-width:600px; margin:0 auto 35px; line-height:1.7;">
+      La IA ya est&aacute; aqu&iacute;. El mercado ya exige m&aacute;s. Los clientes est&aacute;n m&aacute;s cerca que nunca. Lo &uacute;nico que falta eres t&uacute;, ejecutando.
+    </p>
+    <a href="https://go.hotmart.com/S105487769E?ap=15e3" class="btn-gold reveal" target="_blank">Activar mi Llave Digital</a>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq">
+  <div class="container">
+    <h2 class="section-title text-gold reveal" style="font-size:1.6rem;">Preguntas Frecuentes</h2>
+    <div class="faq-container">
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>&iquest;Necesito experiencia t&eacute;cnica?</span>
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="faq-answer">No. Llave Digital est&aacute; dise&ntilde;ado para que puedas empezar desde cero, solo con tu celular y conexión a internet. Daniela te guía paso a paso.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>&iquest;Cu&aacute;nto tiempo necesito dedicarle?</span>
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="faq-answer">Con 1-2 horas al día es suficiente para configurar y empezar a ver resultados. La IA hace gran parte del trabajo por ti.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>&iquest;Es solo para Venezuela?</span>
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="faq-answer">No, funciona desde cualquier país de habla hispana. Solo necesitas internet y la decisión de cambiar tu vida.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>&iquest;Y si no me funciona?</span>
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="faq-answer">Tienes garantía de 7 días. Si no te convence, te devolvemos el 100% de tu inversión, sin preguntas.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>&iquest;C&oacute;mo recibo el acceso?</span>
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="faq-answer">Inmediatamente después de tu compra, recibes acceso a la plataforma y a la comunidad exclusiva por correo electrónico.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>&iquest;Qu&eacute; es La Franquicia IA?</span>
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="faq-answer">Es el sistema creado por Tata Salazar que permite generar ingresos digitales con inteligencia artificial de forma automatizada. Daniela es afiliada y te enseña a sacarle el máximo provecho.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="footer-social">
+    <!-- Instagram -->
+    <a href="https://instagram.com/danielasilva.digital" target="_blank" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </a>
+    <!-- Facebook -->
+    <a href="https://facebook.com/danielasilva.digital" target="_blank" aria-label="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <!-- WhatsApp -->
+    <a href="https://wa.me/584221754245" target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+  </div>
+  <div class="footer-links">
+    <a href="#">T&eacute;rminos y Condiciones</a>
+    <a href="#">Pol&iacute;tica de Privacidad</a>
+    <a href="#">Contacto</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 Llave Digital 3.0 - Daniela Silva. Todos los derechos reservados.</div>
+</footer>
+
+<!-- ==================== FLOATING WHATSAPP ==================== -->
+<a href="https://wa.me/584221754245" class="float-wa" target="_blank" aria-label="WhatsApp">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+// ========== PARTICLES ==========
+(function() {
+  const container = document.getElementById('particles');
+  if (!container) return;
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDelay = Math.random() * 6 + 's';
+    p.style.animationDuration = (4 + Math.random() * 4) + 's';
+    p.style.width = (2 + Math.random() * 3) + 'px';
+    p.style.height = p.style.width;
+    container.appendChild(p);
+  }
+})();
+
+// ========== SCROLL REVEAL ==========
+(function() {
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+  reveals.forEach(el => observer.observe(el));
+})();
+
+// ========== COUNTDOWN TIMER ==========
+(function() {
+  // Set countdown to 23 hours 59 min 59 sec from now, stored in localStorage
+  const KEY = 'llaveDigitalCountdownEnd';
+  let endTime = localStorage.getItem(KEY);
+  if (!endTime || parseInt(endTime) < Date.now()) {
+    endTime = Date.now() + 23 * 60 * 60 * 1000 + 59 * 60 * 1000 + 59 * 1000;
+    localStorage.setItem(KEY, endTime.toString());
+  } else {
+    endTime = parseInt(endTime);
+  }
+
+  function updateCountdown() {
+    const now = Date.now();
+    let diff = endTime - now;
+    if (diff < 0) diff = 0;
+
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('cdMinutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('cdSeconds').textContent = String(seconds).padStart(2, '0');
+
+    if (diff <= 0) {
+      document.getElementById('countdownBar').innerHTML = '<p style="color:#fff;font-weight:700;">&#9889; &#161;LA OFERTA HA EXPIRADO! Precio actual: $297 &#9889;</p>';
+    }
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+})();
+
+// ========== CALCULATOR ==========
+(function() {
+  const slider = document.getElementById('calcSlider');
+  const ventasSpan = document.getElementById('calcVentas');
+  const resultSpan = document.getElementById('calcResult');
+  const commission = 97;
+
+  function updateCalc() {
+    const val = parseInt(slider.value);
+    ventasSpan.textContent = val;
+    const total = val * commission;
+    resultSpan.textContent = '$' + total.toLocaleString();
+  }
+
+  slider.addEventListener('input', updateCalc);
+  updateCalc();
+})();
+
+// ========== QUIZ ==========
+let quizAnswers = [];
+
+function selectOption(el) {
+  // Remove previous selection in same step
+  const step = el.closest('.quiz-step');
+  step.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+
+  // Store answer
+  quizAnswers.push(el.getAttribute('data-value'));
+
+  // Auto-advance after short delay
+  setTimeout(() => {
+    const currentStep = parseInt(step.getAttribute('data-step'));
+    const nextStep = currentStep + 1;
+
+    if (nextStep <= 4) {
+      step.classList.remove('active');
+      document.querySelector('.quiz-step[data-step="' + nextStep + '"]').classList.add('active');
+    } else {
+      // Show result
+      step.classList.remove('active');
+      const resultStep = document.querySelector('.quiz-step[data-step="result"]');
+      resultStep.classList.add('active');
+
+      // Calculate score
+      const yesCount = quizAnswers.filter(a => a === 'yes').length;
+      const maybeCount = quizAnswers.filter(a => a === 'maybe').length;
+
+      const scoreText = document.getElementById('quizScoreText');
+      const resultMsg = document.getElementById('quizResultMsg');
+
+      if (yesCount >= 3) {
+        scoreText.textContent = '¡SÍ ES PARA TI!';
+        resultMsg.textContent = 'Llave Digital 3.0 fue creado exactamente para alguien como tú. No necesitas experiencia, solo decisión.';
+      } else if (yesCount + maybeCount >= 3) {
+        scoreText.textContent = '¡ESTÁS CASI LISTA!';
+        resultMsg.textContent = 'Tienes todo para triunfar con Llave Digital. Solo necesitas dar el paso y confiar en ti.';
+      } else {
+        scoreText.textContent = 'ESTO PUEDE CAMBIAR TU VIDA';
+        resultMsg.textContent = 'Aunque tienes dudas, Llave Digital está diseñado para guiarte paso a paso. Con acompañamiento, sí puedes.';
+      }
+    }
+  }, 400);
+}
+
+// ========== FAQ ==========
+function toggleFaq(el) {
+  const answer = el.nextElementSibling;
+  const isOpen = el.classList.contains('open');
+
+  // Close all
+  document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('open'));
+  document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+
+  // Toggle current
+  if (!isOpen) {
+    el.classList.add('open');
+    answer.classList.add('open');
+  }
+}
+
+// ========== SMOOTH SCROLL ==========
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
