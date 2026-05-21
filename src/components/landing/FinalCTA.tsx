@@ -20,7 +20,7 @@ const features = [
 
 export function FinalCTA() {
   return (
-    <section className="py-16 md:py-24 px-4">
+    <section className="py-10 md:py-14 px-4">
       <div className="max-w-3xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -72,7 +72,7 @@ export function FinalCTA() {
             </div>
             <Button
               size="lg"
-              className="w-full bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold text-lg py-7 rounded-lg transition-all duration-300 hover:scale-[1.02]"
+              className="btn-glow-border w-full bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold text-lg py-7 rounded-lg transition-all duration-300 hover:scale-[1.02]"
               onClick={() => {
                 trackInitiateCheckout();
                 window.open(HOTMART_LINK, "_blank");

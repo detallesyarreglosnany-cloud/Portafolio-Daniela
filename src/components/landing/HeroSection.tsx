@@ -106,7 +106,7 @@ export function HeroSection() {
         >
           <Button
             size="lg"
-            className="bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold text-base md:text-lg px-8 py-6 rounded-lg transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+            className="btn-glow-border bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold text-base md:text-lg px-8 py-6 rounded-lg transition-all duration-300 hover:scale-105 w-full sm:w-auto"
             onClick={() => {
               document.getElementById("quiz")?.scrollIntoView({ behavior: "smooth" });
             }}

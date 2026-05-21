@@ -9,7 +9,7 @@ const HOTMART_LINK = "https://go.hotmart.com/S105487769E?ap=15e3";
 
 export function AgitationSection() {
   return (
-    <section className="py-16 md:py-20 px-4 bg-[#0A0908]">
+    <section className="py-10 md:py-14 px-4 bg-[#0A0908]">
       <div className="max-w-3xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,7 +43,7 @@ export function AgitationSection() {
           </div>
           <Button
             size="lg"
-            className="bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold px-8 py-6 rounded-lg transition-all duration-300 hover:scale-105 text-lg"
+            className="btn-glow-border bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold px-8 py-6 rounded-lg transition-all duration-300 hover:scale-105 text-lg"
             onClick={() => {
               trackInitiateCheckout();
               window.open(HOTMART_LINK, "_blank");

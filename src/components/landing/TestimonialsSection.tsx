@@ -35,17 +35,15 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
 }
 
 export function TestimonialsSection() {
-  const doubled = [...testimonials, ...testimonials];
-
   return (
-    <section className="py-16 md:py-20 px-4 overflow-hidden">
+    <section className="py-10 md:py-14 px-4 overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10"
+          className="text-center mb-8"
         >
           <h2 className="font-serif text-3xl md:text-5xl font-bold text-gold mb-3">
             Ellas ya lo lograron
@@ -55,14 +53,20 @@ export function TestimonialsSection() {
           </p>
         </motion.div>
       </div>
-      {/* Horizontal scrolling carousel */}
+      {/* Horizontal scrolling carousel - no repeat */}
       <div className="relative">
         <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0F0D0B] to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0F0D0B] to-transparent z-10 pointer-events-none" />
-        <div className="carousel-scroll flex">
-          {doubled.map((t, i) => (
-            <TestimonialCard key={i} t={t} />
-          ))}
+        <div className="carousel-scroll" style={{ animationDuration: "20s" }}>
+          <div className="flex">
+            {testimonials.map((t, i) => (
+              <TestimonialCard key={i} t={t} />
+            ))}
+            {/* Duplicate for seamless loop but different key */}
+            {testimonials.map((t, i) => (
+              <TestimonialCard key={`dup-${i}`} t={t} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

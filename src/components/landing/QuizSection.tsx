@@ -56,10 +56,20 @@ export function QuizSection() {
   const isPositive = totalScore >= maxScore * 0.5;
   const progressPct = ((step + (showResult ? 1 : 0)) / questions.length) * 100;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email) return;
-    // Store in localStorage
+    // Send lead to API (Google Sheets + Mailchimp)
+    try {
+      await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, score: totalScore, source: "quiz" }),
+      });
+    } catch {
+      // Silently fail - still proceed
+    }
+    // Store in localStorage as backup
     const leads = JSON.parse(localStorage.getItem("llave_digital_leads") || "[]");
     leads.push({ name, email, score: totalScore, date: new Date().toISOString() });
     localStorage.setItem("llave_digital_leads", JSON.stringify(leads));
@@ -82,7 +92,7 @@ export function QuizSection() {
   };
 
   return (
-    <section id="quiz" className="py-16 md:py-20 px-4 bg-[#0A0908]">
+    <section id="quiz" className="py-10 md:py-14 px-4 bg-[#0A0908]">
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -185,7 +195,7 @@ export function QuizSection() {
                     />
                     <Button
                       type="submit"
-                      className="w-full bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold py-5 rounded-lg"
+                      className="btn-glow-border w-full bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold py-5 rounded-lg"
                     >
                       Quiero mi Llave Digital
                       <ArrowRight className="w-4 h-4 ml-2" />

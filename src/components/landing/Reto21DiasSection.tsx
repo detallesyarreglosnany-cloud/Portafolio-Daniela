@@ -17,7 +17,7 @@ const retoFeatures = [
 
 export function Reto21DiasSection() {
   return (
-    <section className="py-16 md:py-24 px-4 bg-[#0A0908]">
+    <section className="py-10 md:py-14 px-4 bg-[#0A0908]">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -87,7 +87,7 @@ export function Reto21DiasSection() {
           </div>
           <Button
             size="lg"
-            className="w-full bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold text-lg py-7 rounded-lg transition-all duration-300 hover:scale-[1.02]"
+            className="btn-glow-border w-full bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold text-lg py-7 rounded-lg transition-all duration-300 hover:scale-[1.02]"
             onClick={() => {
               trackInitiateCheckout();
               window.open(HOTMART_RETO_LINK, "_blank");
