@@ -1,0 +1,133 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { Key, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { trackInitiateCheckout } from "@/lib/pixel";
+
+const HOTMART_LINK = "https://go.hotmart.com/S105487769E?ap=15e3";
+
+function Particles() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationId: number;
+    const particles: { x: number; y: number; size: number; speedY: number; speedX: number; opacity: number }[] = [];
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    for (let i = 0; i < 50; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedY: -(Math.random() * 0.5 + 0.1),
+        speedX: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.5 + 0.2,
+      });
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        if (p.y < -10) {
+          p.y = canvas.height + 10;
+          p.x = Math.random() * canvas.width;
+        }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(201, 168, 76, ${p.opacity})`;
+        ctx.fill();
+      });
+      animationId = requestAnimationFrame(animate);
+    };
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />;
+}
+
+export function HeroSection() {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20">
+      <Particles />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0F0D0B]" />
+      <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="flex items-center justify-center mb-6">
+            <Key className="w-12 h-12 md:w-16 md:h-16 text-gold float-animation" />
+          </div>
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-6 gold-shimmer leading-tight">
+            LLAVE DIGITAL 3.0
+          </h1>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <p className="text-base md:text-lg lg:text-xl text-foreground/90 max-w-3xl mx-auto mb-8 leading-relaxed">
+            Tú que nunca te diste el lujo de rendirte. Tú que inventas, resuelves, aguantas.{" "}
+            <span className="text-gold font-semibold">
+              La inteligencia artificial no es tu competencia, es tu aliada más poderosa.
+            </span>{" "}
+            Y con el sistema correcto, puedes convertir tu celular en una máquina de ingresos desde casa.{" "}
+            <span className="text-gold font-semibold">Sin experiencia técnica. Sin pedir permiso.</span>{" "}
+            Tu turno es ahora.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
+          <Button
+            size="lg"
+            className="bg-gold hover:bg-gold-light text-[#0F0D0B] font-bold text-base md:text-lg px-8 py-6 rounded-lg transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+            onClick={() => {
+              document.getElementById("quiz")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            <Sparkles className="w-5 h-5 mr-2" />
+            Descubre si es para ti
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            className="border-gold text-gold hover:bg-gold hover:text-[#0F0D0B] font-bold text-base md:text-lg px-8 py-6 rounded-lg transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+            onClick={() => {
+              trackInitiateCheckout();
+              window.open(HOTMART_LINK, "_blank");
+            }}
+          >
+            <Key className="w-5 h-5 mr-2" />
+            Activar mi Llave Digital
+          </Button>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
