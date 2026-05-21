@@ -12,8 +12,6 @@ import { QueRecibirasSection } from "@/components/landing/QueRecibirasSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { RankingSection } from "@/components/landing/RankingSection";
 import { QuizSection } from "@/components/landing/QuizSection";
-import { PricingSection } from "@/components/landing/PricingSection";
-import { GuaranteeSection } from "@/components/landing/GuaranteeSection";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { FAQSection } from "@/components/landing/FAQSection";
 import { Footer } from "@/components/landing/Footer";
@@ -36,8 +34,6 @@ export default function Home() {
         <TestimonialsSection />
         <RankingSection />
         <QuizSection />
-        <PricingSection />
-        <GuaranteeSection />
         <FinalCTA />
         <FAQSection />
       </main>
