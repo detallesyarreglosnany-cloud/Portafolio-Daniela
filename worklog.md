@@ -62,3 +62,22 @@ Stage Summary:
 - 2 new sections created (QueRecibiras, Ranking)
 - 3 sections updated (WhoIAm, Guarantee, Pricing)
 - Lint passes, dev server compiles without errors
+---
+Task ID: 4
+Agent: Main Agent
+Task: Generate static HTML backup of the Next.js landing page
+
+Work Log:
+- Read all 19 component .tsx files from /src/components/landing/
+- Read globals.css, layout.tsx, page.tsx, pixel.ts
+- Rebuilt entire landing as single self-contained HTML file with embedded CSS and JS
+- Preserved all visual design: dark theme, gold accents, glassmorphism, animations
+- Implemented all interactive features in vanilla JS: calculator slider, countdown timer, social proof bar, quiz, FAQ accordion, scroll reveal, WhatsApp button, social proof toasts, hero particles canvas, carousel
+- Copied all 5 images (.jpeg) to /download/ directory for the HTML to reference
+- Saved as /home/z/my-project/download/llave-digital-3.0-RESPALDO.html (77,822 bytes)
+
+Stage Summary:
+- Complete static HTML backup created with full interactivity
+- 5 images copied to download directory
+- Next.js dev server confirmed running on port 3000
+- Ready for user to verify before applying 4 requested corrections
