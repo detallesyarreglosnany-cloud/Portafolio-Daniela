@@ -52,3 +52,15 @@ prompt
 server.log
 # Skills directory
 /skills/
+
+# Non-deployment files
+/upload/
+/download/
+/db/
+/examples/
+/mini-services/
+/.zscripts/
+/worklog.md
+serve-landing.js
+run-server.sh
+Caddyfile
