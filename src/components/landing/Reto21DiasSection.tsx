@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Flame, CheckCircle2, Zap } from "lucide-react";
 import { trackInitiateCheckout } from "@/lib/pixel";
 
-const HOTMART_RETO_LINK = "https://go.hotmart.com/S105487769E?ap=15e3"; // TODO: Replace with actual $69 Hotmart link
+const HOTMART_RETO_LINK = "https://go.hotmart.com/L105567868D?ap=0d54";
 
 const retoFeatures = [
   "Aprende a crear contenido impactante con IA en 21 días",

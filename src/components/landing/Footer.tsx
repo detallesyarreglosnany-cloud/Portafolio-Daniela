@@ -2,10 +2,17 @@
 
 import { Instagram, Facebook, MessageCircle } from "lucide-react";
 
+const TikTokIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.76a8.28 8.28 0 0 0 4.76 1.5v-3.4a4.85 4.85 0 0 1-1-.17z"/>
+  </svg>
+);
+
 const socialLinks = [
-  { icon: Instagram, href: "https://instagram.com/danielasilva.digital", label: "Instagram" },
-  { icon: Facebook, href: "https://facebook.com/danielasilva.digital", label: "Facebook" },
+  { icon: Instagram, href: "https://instagram.com/danieladigital3.0", label: "Instagram" },
+  { icon: Facebook, href: "https://www.facebook.com/share/1C4XAG88fD/", label: "Facebook" },
   { icon: MessageCircle, href: "https://wa.me/584221754245", label: "WhatsApp" },
+  { icon: TikTokIcon, href: "https://tiktok.com/@danidigital3.0", label: "TikTok" },
 ];
 
 export function Footer() {
@@ -26,10 +33,14 @@ export function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center hover:bg-gold/20 transition-colors"
+                className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center hover:bg-gold/20 transition-colors text-gold"
                 aria-label={s.label}
               >
-                <s.icon className="w-5 h-5 text-gold" />
+                {typeof s.icon === "function" && s.icon.prototype ? (
+                  <s.icon className="w-5 h-5" />
+                ) : (
+                  <s.icon />
+                )}
               </a>
             ))}
           </div>

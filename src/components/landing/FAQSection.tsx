@@ -31,7 +31,11 @@ const faqs = [
   },
   {
     q: "¿Cuánto puedo ganar?",
-    a: "Depende de tu compromiso. Con solo 10 ventas al mes a $97 de comisión, ya son $970 mensuales. Algunas alumnas facturan mucho más. Los resultados varían según tu dedicación.",
+    a: "Las personas venden el producto a $97 y ganan el 50% de comisión por cada venta. Con solo 10 ventas al mes, ya son $485 mensuales. Algunas alumnas facturan mucho más. Los resultados varían según tu dedicación.",
+  },
+  {
+    q: "¿Puedo hacerlo todo desde mi celular?",
+    a: "Sí, puedes ver las clases y aprender desde tu celular. Sin embargo, si quieres vender con publicidad paga, las configuraciones de la cuenta de Meta, el píxel y las campañas publicitarias se hacen desde una computadora.",
   },
 ];
 
