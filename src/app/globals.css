@@ -91,7 +91,7 @@
   }
 }
 
-/* Custom scrollbar */
+/* ========== CUSTOM SCROLLBAR (Gold) ========== */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -112,7 +112,7 @@
   scrollbar-color: #C9A84C #0F0D0B;
 }
 
-/* Gold shimmer animation */
+/* ========== GOLD SHIMMER ANIMATION ========== */
 @keyframes shimmer {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
@@ -127,7 +127,7 @@
   animation: shimmer 3s linear infinite;
 }
 
-/* Pulse glow animation */
+/* ========== PULSE GLOW ANIMATION ========== */
 @keyframes pulseGlow {
   0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.3); }
   50% { box-shadow: 0 0 40px rgba(201, 168, 76, 0.6); }
@@ -137,7 +137,7 @@
   animation: pulseGlow 2s ease-in-out infinite;
 }
 
-/* Float animation */
+/* ========== FLOAT ANIMATION ========== */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -147,28 +147,7 @@
   animation: float 3s ease-in-out infinite;
 }
 
-/* Countdown gradient */
-@keyframes countdownGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.countdown-gradient {
-  background: linear-gradient(270deg, #DC2626, #C9A84C, #DC2626, #C9A84C);
-  background-size: 400% 400%;
-  animation: countdownGradient 4s ease infinite;
-}
-
-/* Particle animation */
-@keyframes particleFloat {
-  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(-100vh) translateX(50px) scale(0); opacity: 0; }
-}
-
-/* Testimonial carousel */
+/* ========== CAROUSEL INFINITE SCROLL ========== */
 @keyframes scrollLeft {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -182,7 +161,7 @@
   animation-play-state: paused;
 }
 
-/* WhatsApp float */
+/* ========== WHATSAPP FLOAT ========== */
 @keyframes whatsappFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
@@ -192,7 +171,7 @@
   animation: whatsappFloat 2s ease-in-out infinite;
 }
 
-/* Glow border animation */
+/* ========== GLOW BORDER ANIMATION ========== */
 @keyframes glowBorder {
   0%, 100% { border-color: rgba(201, 168, 76, 0.3); }
   50% { border-color: rgba(201, 168, 76, 0.8); }
@@ -202,7 +181,7 @@
   animation: glowBorder 2s ease-in-out infinite;
 }
 
-/* Border glow travel animation for buttons with 3D effect */
+/* ========== BUTTON GLOW BORDER TRAVEL (3D) ========== */
 @keyframes borderGlowTravel {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -242,7 +221,7 @@
   z-index: -1;
 }
 
-/* Mega button pulse for 3en1 */
+/* ========== MEGA BUTTON PULSE ========== */
 @keyframes megaPulse {
   0%, 100% { transform: perspective(500px) translateZ(0) scale(1); box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3); }
   50% { transform: perspective(500px) translateZ(10px) scale(1.04); box-shadow: 0 12px 35px rgba(201, 168, 76, 0.5), 0 6px 12px rgba(0, 0, 0, 0.4); }
@@ -258,7 +237,38 @@
   box-shadow: 0 16px 45px rgba(201, 168, 76, 0.6), 0 8px 16px rgba(0, 0, 0, 0.5);
 }
 
-/* Section entrance animations */
+/* ========== GRID PATTERN (Gold lines) ========== */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(201, 168, 76, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 168, 76, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ========== TYPING DOT ANIMATION (Chatbot) ========== */
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+.typing-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #C9A84C;
+  animation: typingBounce 1.4s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ========== SECTION ENTRANCE ANIMATIONS ========== */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
@@ -304,13 +314,31 @@
   animation: pulseScale 2s ease-in-out infinite;
 }
 
-/* Smooth scroll */
+/* ========== SMOOTH SCROLL ========== */
 html {
   scroll-behavior: smooth;
 }
 
-/* Selection color */
+/* ========== SELECTION COLOR (Gold) ========== */
 ::selection {
   background: rgba(201, 168, 76, 0.3);
   color: #E8E0D4;
+}
+
+/* ========== GOLD PARTICLE BACKGROUND ========== */
+@keyframes particleFloat {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-100vh) translateX(50px) scale(0); opacity: 0; }
+}
+
+.gold-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #C9A84C;
+  border-radius: 50%;
+  animation: particleFloat 8s ease-in-out infinite;
+  pointer-events: none;
 }
