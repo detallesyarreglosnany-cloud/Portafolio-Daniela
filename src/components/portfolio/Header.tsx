@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
+  { label: "Sobre Mí", href: "#sobre-mi" },
   { label: "Servicios", href: "#servicios" },
   { label: "Proyectos", href: "#proyectos" },
   { label: "Contacto", href: "#contacto" },
@@ -48,7 +49,7 @@ export function Header() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             className="font-serif text-2xl md:text-3xl font-bold text-[#C9A84C] tracking-wide"
-            style={{ fontFamily: "var(--font-playfair), serif" }}
+            style={{ fontFamily: "var(--font-playfair), serif", fontStyle: "italic" }}
           >
             Daniela Silva
           </a>
@@ -64,6 +65,14 @@ export function Header() {
                 {link.label}
               </button>
             ))}
+            <a
+              href="https://wa.me/584221754245"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-glow-border inline-flex items-center gap-2 bg-[#C9A84C] text-[#0F0D0B] font-bold px-5 py-2 rounded-lg text-xs uppercase tracking-wider hover:bg-[#E8D48B] transition-colors"
+            >
+              Contactar
+            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -97,6 +106,14 @@ export function Header() {
                   {link.label}
                 </button>
               ))}
+              <a
+                href="https://wa.me/584221754245"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#C9A84C] text-[#0F0D0B] font-bold px-6 py-2.5 rounded-lg text-sm uppercase tracking-wider"
+              >
+                Contactar
+              </a>
             </nav>
           </motion.div>
         )}

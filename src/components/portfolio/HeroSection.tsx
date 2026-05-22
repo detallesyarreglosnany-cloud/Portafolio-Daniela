@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowDown, MessageCircle } from "lucide-react";
+import { ArrowDown, MessageCircle, Sparkles, Star } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -35,7 +35,7 @@ export function HeroSection() {
     >
       {/* Background particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {Array.from({ length: 12 }).map((_, i) => (
+        {Array.from({ length: 15 }).map((_, i) => (
           <div
             key={i}
             className="gold-particle"
@@ -53,42 +53,67 @@ export function HeroSection() {
 
       {/* Subtle radial glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C9A84C]/5 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#C9A84C]/5 rounded-full blur-[120px]" />
       </div>
 
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+
       <motion.div
-        className="relative z-10 max-w-4xl mx-auto px-4 text-center"
+        className="relative z-10 max-w-5xl mx-auto px-4 text-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {/* Profile Photo */}
         <motion.div variants={itemVariants} className="flex justify-center mb-8">
-          <div className="relative pulse-glow rounded-full">
-            <Image
-              src="/images/daniela-perfil.png"
-              alt="Daniela Silva - Estratega Digital"
-              width={200}
-              height={200}
-              className="rounded-full border-2 border-[#C9A84C] object-cover w-[180px] h-[180px] sm:w-[200px] sm:h-[200px] md:w-[250px] md:h-[250px]"
-              priority
-            />
+          <div className="relative">
+            {/* Outer ring glow */}
+            <div className="absolute inset-[-8px] rounded-full bg-gradient-to-r from-[#C9A84C] via-[#E8D48B] to-[#C9A84C] opacity-30 blur-md animate-pulse-scale" />
+            {/* Border ring */}
+            <div className="relative pulse-glow rounded-full p-1 bg-gradient-to-br from-[#C9A84C] via-[#E8D48B] to-[#C9A84C]">
+              <Image
+                src="/images/daniela-perfil.png"
+                alt="Daniela Silva - Estratega Digital & Ventas con IA"
+                width={200}
+                height={200}
+                className="rounded-full object-cover w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] md:w-[240px] md:h-[240px] border-4 border-[#0F0D0B]"
+                priority
+              />
+            </div>
+            {/* Badge */}
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#C9A84C] text-[#0F0D0B] px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider whitespace-nowrap shadow-lg">
+              <Sparkles size={12} className="inline mr-1" />
+              Estratega Digital
+            </div>
           </div>
         </motion.div>
 
-        {/* Name */}
-        <motion.h1
-          variants={itemVariants}
-          className="gold-shimmer font-serif text-5xl md:text-7xl font-bold mb-4"
-          style={{ fontFamily: "var(--font-playfair), serif", fontStyle: "italic" }}
-        >
-          Daniela Silva
-        </motion.h1>
+        {/* Name - Elegant Typography */}
+        <motion.div variants={itemVariants} className="mb-2">
+          <h1
+            className="gold-shimmer font-serif text-5xl sm:text-6xl md:text-8xl font-bold tracking-tight leading-none"
+            style={{
+              fontFamily: "var(--font-playfair), serif",
+              fontStyle: "italic",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Daniela Silva
+          </h1>
+        </motion.div>
+
+        {/* Decorative divider */}
+        <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 my-6">
+          <div className="w-16 sm:w-24 h-[1px] bg-gradient-to-r from-transparent to-[#C9A84C]" />
+          <Star size={14} className="text-[#C9A84C]" fill="currentColor" />
+          <div className="w-16 sm:w-24 h-[1px] bg-gradient-to-l from-transparent to-[#C9A84C]" />
+        </motion.div>
 
         {/* Subtitle */}
         <motion.p
           variants={itemVariants}
-          className="text-[#C9A84C] text-lg md:text-2xl font-medium tracking-wide mb-6"
+          className="text-[#C9A84C] text-base sm:text-lg md:text-2xl font-medium tracking-widest uppercase mb-6"
         >
           Estratega Digital &amp; Ventas con IA
         </motion.p>
@@ -103,30 +128,54 @@ export function HeroSection() {
           Transformo negocios tradicionales en máquinas de facturación digital.
         </motion.p>
 
+        {/* Stats */}
+        <motion.div
+          variants={itemVariants}
+          className="flex items-center justify-center gap-6 sm:gap-10 mb-10"
+        >
+          {[
+            { value: "8+", label: "Años" },
+            { value: "50+", label: "Proyectos" },
+            { value: "4", label: "Países" },
+          ].map((stat, idx) => (
+            <div key={idx} className="text-center">
+              <div
+                className="font-serif text-3xl sm:text-4xl font-bold text-[#C9A84C]"
+                style={{ fontFamily: "var(--font-playfair), serif" }}
+              >
+                {stat.value}
+              </div>
+              <div className="text-[#8A8278] text-xs uppercase tracking-wider mt-1">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
         {/* CTA Buttons */}
         <motion.div
           variants={itemVariants}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
-            href="#proyectos"
+            href="#servicios"
             onClick={(e) => {
               e.preventDefault();
-              document.querySelector("#proyectos")?.scrollIntoView({ behavior: "smooth" });
+              document.querySelector("#servicios")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="btn-glow-border inline-flex items-center gap-2 bg-[#C9A84C] text-[#0F0D0B] font-bold px-8 py-3 rounded-lg text-sm uppercase tracking-wider hover:bg-[#E8D48B] transition-colors"
+            className="btn-glow-border inline-flex items-center gap-2 bg-[#C9A84C] text-[#0F0D0B] font-bold px-8 py-3.5 rounded-lg text-sm uppercase tracking-wider hover:bg-[#E8D48B] transition-colors"
           >
-            Ver Proyectos
+            Ver Servicios
             <ArrowDown size={16} />
           </a>
           <a
             href="https://wa.me/584221754245"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-[#C9A84C] text-[#C9A84C] font-bold px-8 py-3 rounded-lg text-sm uppercase tracking-wider hover:bg-[#C9A84C] hover:text-[#0F0D0B] transition-all"
+            className="inline-flex items-center gap-2 border border-[#C9A84C] text-[#C9A84C] font-bold px-8 py-3.5 rounded-lg text-sm uppercase tracking-wider hover:bg-[#C9A84C] hover:text-[#0F0D0B] transition-all"
           >
-            Contactar
             <MessageCircle size={16} />
+            Contactar
           </a>
         </motion.div>
       </motion.div>

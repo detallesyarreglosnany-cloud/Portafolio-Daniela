@@ -19,12 +19,12 @@ const options = [
   {
     label: "¿Cómo funciona la IA en mi negocio?",
     response:
-      "¡Gran pregunta! Implemento sistemas de IA que automatizan tus ventas 24/7. Desde chatbots que responden y venden por WhatsApp, hasta calculadoras interactivas que atraen tráfico. Tu negocio trabaja incluso cuando tú descansas.",
+      "¡Gran pregunta! Implemento sistemas de IA que automatizan tus ventas 24/7. Desde bots de WhatsApp que responden y venden solos, hasta agentes de voz que atienden llamadas, calculadoras interactivas que atraen tráfico, y automatizaciones No-Code que conectan todas tus herramientas. Tu negocio trabaja incluso cuando tú descansas.",
   },
   {
-    label: "Ver catálogo de precios",
+    label: "Ver servicios y precios",
     response:
-      "📄 Servicios base:\n• Landing Page: desde $150\n• Chatbot WhatsApp: desde $200\n• Tienda Online: desde $300\n• Gestión de Redes: desde $150/mes\n• Campañas ADS: desde $200/mes\n\n*Precios referenciales. Contáctame para cotización personalizada.",
+      "Mis servicios más solicitados:\n• Página de Ventas Premium: desde $89\n• Bot Vendedor WhatsApp 24/7: desde $89\n• Marketplace con Inventario: desde $140\n• Agentes IA Personalizados: desde $180\n• Contenido IA + Edición: desde $35\n• Asesoría Estratégica 1:1: desde $250\n• Auditoría de Ventas: GRATIS\n\n*También tengo servicios en tendencia 2026: Agentes de Voz IA, Social Commerce y Automatización No-Code.\n\n¿Quieres cotizar alguno?",
   },
   {
     label: "Hablar con Daniela",
@@ -46,12 +46,10 @@ export function ChatBotWidget() {
   const handleOptionClick = (optionIndex: number) => {
     const option = options[optionIndex];
 
-    // Add user message
     setMessages((prev) => [...prev, { role: "user", text: option.label }]);
     setShowOptions(false);
     setIsTyping(true);
 
-    // Simulate typing delay
     setTimeout(() => {
       setIsTyping(false);
       if (option.response === "WHATSAPP_LINK") {
@@ -59,16 +57,14 @@ export function ChatBotWidget() {
           ...prev,
           {
             role: "bot",
-            text: "¡Perfecto! Te llevo directamente con Daniela por WhatsApp. 🌟",
+            text: "¡Perfecto! Te llevo directamente con Daniela por WhatsApp. Allí te atiende personalmente. ¡Nos vemos! ✨",
           },
         ]);
-        // Open WhatsApp after a short delay
         setTimeout(() => {
           window.open("https://wa.me/584221754245", "_blank");
         }, 800);
       } else {
         setMessages((prev) => [...prev, { role: "bot", text: option.response }]);
-        // Show options again after response
         setTimeout(() => {
           setShowOptions(true);
         }, 500);
@@ -88,7 +84,7 @@ export function ChatBotWidget() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="w-14 h-14 bg-[#C9A84C] rounded-full shadow-lg flex items-center justify-center hover:bg-[#E8D48B] transition-colors"
+            className="w-14 h-14 bg-[#C9A84C] rounded-full shadow-lg flex items-center justify-center hover:bg-[#E8D48B] transition-colors pulse-glow"
             aria-label="Abrir chat"
           >
             <Sparkles size={24} className="text-[#0F0D0B]" />
@@ -109,8 +105,16 @@ export function ChatBotWidget() {
             {/* Header */}
             <div className="flex items-center justify-between p-4 bg-[#1A1714] border-b border-[rgba(201,168,76,0.2)]">
               <div className="flex items-center gap-2">
-                <Sparkles size={18} className="text-[#C9A84C]" />
-                <span className="text-[#E8E0D4] font-bold text-sm">Asistente de Daniela</span>
+                <div className="w-8 h-8 rounded-full bg-[#C9A84C]/20 flex items-center justify-center">
+                  <Sparkles size={14} className="text-[#C9A84C]" />
+                </div>
+                <div>
+                  <span className="text-[#E8E0D4] font-bold text-sm block">Asistente de Daniela</span>
+                  <span className="text-emerald-400 text-[10px] flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full inline-block" />
+                    En línea
+                  </span>
+                </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}

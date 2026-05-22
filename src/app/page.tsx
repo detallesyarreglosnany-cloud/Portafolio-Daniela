@@ -2,6 +2,7 @@
 
 import { Header } from "@/components/portfolio/Header";
 import { HeroSection } from "@/components/portfolio/HeroSection";
+import { AboutSection } from "@/components/portfolio/AboutSection";
 import { ServicesGrid } from "@/components/portfolio/ServicesGrid";
 import { ProjectCarousel } from "@/components/portfolio/ProjectCarousel";
 import { ClosingSection } from "@/components/portfolio/ClosingSection";
@@ -15,6 +16,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <HeroSection />
+        <AboutSection />
         <ServicesGrid />
         <ProjectCarousel />
         <ClosingSection />
