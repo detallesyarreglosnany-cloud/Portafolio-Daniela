@@ -35,8 +35,8 @@ export function Promo3en1Section() {
               <Image
                 src="/images/promo-3en1.jpeg"
                 alt="Promoción 3 en 1 - Llave Digital 3.0"
-                width={900}
-                height={600}
+                width={848}
+                height={1264}
                 className="w-full h-auto"
                 priority
               />
