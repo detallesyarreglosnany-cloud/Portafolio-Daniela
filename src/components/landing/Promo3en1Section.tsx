@@ -28,7 +28,7 @@ export function Promo3en1Section() {
             className="mb-10"
           >
             <motion.div
-              className="relative rounded-2xl overflow-hidden border-2 border-gold/30 w-full max-w-md mx-auto"
+              className="relative rounded-2xl overflow-hidden border-2 border-gold/30 w-full max-w-md mx-auto h-[500px] md:h-[550px]"
               whileHover={{ scale: 1.02, boxShadow: "0 0 50px rgba(201,168,76,0.3)" }}
               transition={{ duration: 0.3 }}
             >
@@ -36,8 +36,8 @@ export function Promo3en1Section() {
                 src="/images/promo-3en1.jpeg"
                 alt="Promoción 3 en 1 - Llave Digital 3.0"
                 width={400}
-                height={500}
-                className="w-full h-auto object-contain"
+                height={550}
+                className="w-full h-full object-cover"
                 priority
               />
             </motion.div>
