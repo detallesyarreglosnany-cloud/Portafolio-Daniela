@@ -7,8 +7,10 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
   { label: "Sobre Mí", href: "#sobre-mi" },
   { label: "Servicios", href: "#servicios" },
+  { label: "Planes", href: "#planes" },
   { label: "Proyectos", href: "#proyectos" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Testimonios", href: "#testimonios" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 export function Header() {
@@ -35,7 +37,7 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0F0D0B]/80 backdrop-blur-lg border-b border-[rgba(201,168,76,0.15)]"
+          ? "bg-[#0F0D0B]/90 backdrop-blur-xl border-b border-[rgba(201,168,76,0.15)] shadow-lg shadow-black/20"
           : "bg-transparent"
       }`}
     >
@@ -55,12 +57,12 @@ export function Header() {
           </a>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className="text-[#8A8278] hover:text-[#C9A84C] transition-colors duration-300 text-sm font-medium tracking-wide uppercase"
+                className="text-[#8A8278] hover:text-[#C9A84C] transition-colors duration-300 text-xs font-medium tracking-wide uppercase"
               >
                 {link.label}
               </button>
@@ -78,7 +80,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden text-[#C9A84C] p-2"
+            className="lg:hidden text-[#C9A84C] p-2"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -94,14 +96,14 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#0F0D0B]/95 backdrop-blur-lg border-b border-[rgba(201,168,76,0.15)] overflow-hidden"
+            className="lg:hidden bg-[#0F0D0B]/98 backdrop-blur-xl border-b border-[rgba(201,168,76,0.15)] overflow-hidden"
           >
-            <nav className="flex flex-col items-center gap-6 py-8">
+            <nav className="flex flex-col items-center gap-5 py-8">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-[#E8E0D4] hover:text-[#C9A84C] transition-colors duration-300 text-lg font-medium tracking-wide"
+                  className="text-[#E8E0D4] hover:text-[#C9A84C] transition-colors duration-300 text-base font-medium tracking-wide"
                 >
                   {link.label}
                 </button>

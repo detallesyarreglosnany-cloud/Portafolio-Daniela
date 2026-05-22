@@ -16,11 +16,12 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Daniela Silva | Estratega Digital & Ventas con IA",
+  title: "Portafolio Daniela | Estratega Digital & Ventas con IA",
   description:
-    "Portafolio profesional de Daniela Silva. Sistemas de ventas automáticos mediante Inteligencia Artificial.",
+    "Portafolio profesional de Daniela Silva. Sistemas de ventas automáticos mediante Inteligencia Artificial. +8 años de trayectoria internacional.",
   keywords: [
     "Daniela Silva",
+    "portafolio",
     "estratega digital",
     "inteligencia artificial",
     "ventas automáticas",
@@ -28,15 +29,18 @@ export const metadata: Metadata = {
     "marketing digital",
     "negocios digitales",
     "LLAVE DIGITAL",
+    "bot WhatsApp",
+    "marketplace",
+    "landing page",
   ],
   authors: [{ name: "Daniela Silva" }],
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
-    title: "Daniela Silva | Estratega Digital & Ventas con IA",
+    title: "Portafolio Daniela | Estratega Digital & Ventas con IA",
     description:
-      "Portafolio profesional de Daniela Silva. Sistemas de ventas automáticos mediante Inteligencia Artificial.",
+      "Sistemas de ventas automáticos mediante Inteligencia Artificial. +8 años de trayectoria internacional.",
     type: "website",
   },
 };
