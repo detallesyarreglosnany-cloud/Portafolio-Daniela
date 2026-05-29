@@ -74,7 +74,6 @@ export function ChatBotWidget() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      {/* Chat Button */}
       <AnimatePresence>
         {!isOpen && (
           <motion.button
@@ -84,15 +83,14 @@ export function ChatBotWidget() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="w-14 h-14 bg-[#C9A84C] rounded-full shadow-lg flex items-center justify-center hover:bg-[#E8D48B] transition-colors pulse-glow"
+            className="w-14 h-14 bg-[#6B7F4E] rounded-full shadow-lg flex items-center justify-center hover:bg-[#8FA36E] transition-colors pulse-glow"
             aria-label="Abrir chat"
           >
-            <Sparkles size={24} className="text-[#0F0D0B]" />
+            <Sparkles size={24} className="text-[#E2D9CC]" />
           </motion.button>
         )}
       </AnimatePresence>
 
-      {/* Chat Panel */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -100,16 +98,16 @@ export function ChatBotWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.3 }}
-            className="absolute bottom-0 right-0 w-[320px] sm:w-[360px] max-h-[500px] bg-[#0F0D0B] rounded-2xl border border-[rgba(201,168,76,0.3)] shadow-2xl flex flex-col overflow-hidden"
+            className="absolute bottom-0 right-0 w-[320px] sm:w-[360px] max-h-[500px] bg-[#0F0D0B] rounded-2xl border border-[rgba(107,127,78,0.25)] shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 bg-[#1A1714] border-b border-[rgba(201,168,76,0.2)]">
+            <div className="flex items-center justify-between p-4 bg-[#1E1B16] border-b border-[rgba(107,127,78,0.15)]">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-[#C9A84C]/20 flex items-center justify-center">
-                  <Sparkles size={14} className="text-[#C9A84C]" />
+                <div className="w-8 h-8 rounded-full bg-[#6B7F4E]/15 flex items-center justify-center">
+                  <Sparkles size={14} className="text-[#6B7F4E]" />
                 </div>
                 <div>
-                  <span className="text-[#E8E0D4] font-bold text-sm block">Asistente de Daniela</span>
+                  <span className="text-[#E2D9CC] font-bold text-sm block">Asistente de Daniela</span>
                   <span className="text-emerald-400 text-[10px] flex items-center gap-1">
                     <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full inline-block" />
                     En línea
@@ -118,14 +116,14 @@ export function ChatBotWidget() {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-[#8A8278] hover:text-[#C9A84C] transition-colors"
+                className="text-[#9A8E80] hover:text-[#6B7F4E] transition-colors"
               >
                 <X size={18} />
               </button>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 max-h-[320px]" style={{ scrollbarWidth: "thin", scrollbarColor: "#C9A84C #0F0D0B" }}>
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 max-h-[320px]" style={{ scrollbarWidth: "thin", scrollbarColor: "#4A5A35 #0F0D0B" }}>
               {messages.map((msg, idx) => (
                 <div
                   key={idx}
@@ -134,8 +132,8 @@ export function ChatBotWidget() {
                   <div
                     className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-line ${
                       msg.role === "user"
-                        ? "bg-[#C9A84C] text-[#0F0D0B] rounded-br-md"
-                        : "bg-[#1A1714] text-[#E8E0D4] border border-[rgba(201,168,76,0.15)] rounded-bl-md"
+                        ? "bg-[#6B7F4E] text-[#E2D9CC] rounded-br-md"
+                        : "bg-[#1E1B16] text-[#E2D9CC] border border-[rgba(107,127,78,0.12)] rounded-bl-md"
                     }`}
                   >
                     {msg.text}
@@ -143,10 +141,9 @@ export function ChatBotWidget() {
                 </div>
               ))}
 
-              {/* Typing indicator */}
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="bg-[#1A1714] border border-[rgba(201,168,76,0.15)] px-4 py-3 rounded-2xl rounded-bl-md flex gap-1.5">
+                  <div className="bg-[#1E1B16] border border-[rgba(107,127,78,0.12)] px-4 py-3 rounded-2xl rounded-bl-md flex gap-1.5">
                     <span className="typing-dot" />
                     <span className="typing-dot" />
                     <span className="typing-dot" />
@@ -157,14 +154,13 @@ export function ChatBotWidget() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Option Buttons */}
             {showOptions && (
-              <div className="p-3 border-t border-[rgba(201,168,76,0.15)] space-y-2">
+              <div className="p-3 border-t border-[rgba(107,127,78,0.12)] space-y-2">
                 {options.map((option, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleOptionClick(idx)}
-                    className="w-full text-left px-4 py-2.5 rounded-xl border border-[rgba(201,168,76,0.3)] text-[#C9A84C] text-xs font-medium hover:bg-[#C9A84C] hover:text-[#0F0D0B] transition-all duration-300"
+                    className="w-full text-left px-4 py-2.5 rounded-xl border border-[rgba(107,127,78,0.25)] text-[#8FA36E] text-xs font-medium hover:bg-[#6B7F4E] hover:text-[#E2D9CC] transition-all duration-300"
                   >
                     {option.label}
                   </button>

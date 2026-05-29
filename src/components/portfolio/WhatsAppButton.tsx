@@ -5,8 +5,7 @@ import { MessageCircle } from "lucide-react";
 export function WhatsAppButton() {
   return (
     <div className="fixed bottom-6 left-6 z-40 group">
-      {/* Tooltip */}
-      <div className="absolute bottom-full left-0 mb-2 px-3 py-1.5 bg-[#1A1714] border border-[rgba(201,168,76,0.3)] text-[#E8E0D4] text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+      <div className="absolute bottom-full left-0 mb-2 px-3 py-1.5 bg-[#1E1B16] border border-[rgba(107,127,78,0.2)] text-[#E2D9CC] text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
         ¡Escríbeme por WhatsApp!
       </div>
 

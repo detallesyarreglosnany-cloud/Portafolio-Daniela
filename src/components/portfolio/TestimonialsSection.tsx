@@ -1,9 +1,8 @@
 "use client";
 
-import { useRef } from "react";
-import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { Quote, MapPin } from "lucide-react";
+import { useRef } from "react";
+import { Star } from "lucide-react";
 
 interface Testimonial {
   name: string;
@@ -12,235 +11,181 @@ interface Testimonial {
   text: string;
   lang: "es" | "en";
   service: string;
-  avatar: string;
   rating: number;
 }
 
 const testimonials: Testimonial[] = [
   {
-    name: "Carolina Mendoza",
+    name: "Carolina M.",
     country: "Venezuela",
     flag: "🇻🇪",
-    text: "Daniela transformó mi tienda por completo. En 2 semanas ya vendía más online que en la tienda física. Su bot de WhatsApp es increíble, cierra ventas solo.",
+    text: "Daniela transformó mi tienda. En 2 semanas vendía más online que en la física.",
     lang: "es",
-    service: "Marketplace + Bot WhatsApp",
-    avatar: "/images/test-carolina.png",
+    service: "Marketplace + Bot",
     rating: 5,
   },
   {
-    name: "James Richardson",
-    country: "United States",
+    name: "James R.",
+    country: "EE.UU.",
     flag: "🇺🇸",
-    text: "I was skeptical about AI for my business, but Daniela's chatbot increased my conversion rate by 340% in the first month. Absolutely game-changing.",
+    text: "Su chatbot aumentó mi conversión 340% en el primer mes. Game-changing.",
     lang: "en",
-    service: "AI Chatbot + Landing Page",
-    avatar: "/images/test-james.png",
+    service: "AI Chatbot",
     rating: 5,
   },
   {
-    name: "María Fernanda López",
+    name: "María F. López",
     country: "Colombia",
     flag: "🇨🇴",
-    text: "La asesoría 1:1 fue la mejor inversión. En 31 días tenía mi plan de negocios claro, mi contenido estratégico y mis primeras ventas automáticas. ¡100% recomendada!",
+    text: "La asesoría fue la mejor inversión. 31 días y ya vendía automático.",
     lang: "es",
-    service: "Asesoría Estratégica 1:1",
-    avatar: "/images/test-maria.png",
+    service: "Asesoría 1:1",
     rating: 5,
   },
   {
-    name: "Sarah Thompson",
-    country: "Canada",
+    name: "Sarah T.",
+    country: "Canadá",
     flag: "🇨🇦",
-    text: "The omnichannel integration Daniela set up saved me 20+ hours per week. Everything flows: WhatsApp, Instagram, email — one dashboard. Brilliant.",
+    text: "La integración omnichannel me ahorra 20+ horas semanales. Brillante.",
     lang: "en",
-    service: "Integración Omnichannel",
-    avatar: "/images/test-sarah.png",
+    service: "Omnichannel",
     rating: 5,
   },
   {
-    name: "Ricardo Herrera",
+    name: "Ricardo H.",
     country: "Perú",
     flag: "🇵🇪",
-    text: "Mi clínica necesitaba un sistema de agendamiento que funcionara solo. Daniela creó una MiniApp que sincroniza con Google Calendar y envía recordatorios por WhatsApp. Cero citas perdidas.",
+    text: "MiniApp que sincroniza con Calendar y envía recordatorios. Cero citas perdidas.",
     lang: "es",
-    service: "MiniApp Especializada",
-    avatar: "/images/test-ricardo.png",
+    service: "MiniApp",
     rating: 5,
   },
   {
-    name: "Emily Chen",
-    country: "United States",
+    name: "Emily C.",
+    country: "EE.UU.",
     flag: "🇺🇸",
-    text: "The viral campaign blueprint was worth every penny. Our launch got 12K shares in 48 hours. Daniela knows what makes content spread.",
+    text: "12K shares en 48 horas con su blueprint viral. Ella sabe lo que hace.",
     lang: "en",
-    service: "Blueprint Campañas Virales",
-    avatar: "/images/test-emily.png",
+    service: "Campañas Virales",
     rating: 5,
   },
   {
-    name: "Ana Karina Díaz",
+    name: "Ana K. Díaz",
     country: "Venezuela",
     flag: "🇻🇪",
-    text: "El contenido con IA que crea Daniela parece de producción hollywoodense. Mis videos de TikTok pasaron de 200 a 15K vistas. La IA bien usada es magia.",
+    text: "Contenido IA de nivel hollywoodense. Mis TikTok pasaron de 200 a 15K vistas.",
     lang: "es",
-    service: "Contenido IA + Edición",
-    avatar: "/images/test-anak.png",
+    service: "Contenido IA",
     rating: 5,
   },
   {
-    name: "David Martínez",
+    name: "David M.",
     country: "Colombia",
     flag: "🇨🇴",
-    text: "La mentorship grupal fue transformadora. No solo aprendí, sino que implementé cada semana con guía directa. A las 8 semanas ya facturaba online.",
+    text: "Mentorship transformadora. A las 8 semanas ya facturaba online.",
     lang: "es",
-    service: "Mentorship Grupal",
-    avatar: "/images/test-david.png",
+    service: "Mentorship",
     rating: 5,
   },
   {
-    name: "Lisa Morgan",
-    country: "United Kingdom",
+    name: "Lisa M.",
+    country: "Reino Unido",
     flag: "🇬🇧",
-    text: "Daniela's AI agents handle 90% of our customer inquiries now. Response time went from hours to seconds. Our satisfaction score jumped to 4.9/5.",
+    text: "Agentes IA manejan 90% de consultas. Satisfacción 4.9/5.",
     lang: "en",
-    service: "Agentes IA Personalizados",
-    avatar: "/images/test-lisa.png",
+    service: "Agentes IA",
     rating: 5,
   },
   {
-    name: "Gabriela Torres",
+    name: "Gabriela T.",
     country: "México",
     flag: "🇲🇽",
-    text: "La auditoría gratuita me abrió los ojos. Daniela encontró 3 problemas que me costaban $2,000 al mes en ventas perdidas. Los resolvimos en una semana.",
+    text: "Encontró 3 problemas que me costaban $2,000/mes en ventas perdidas.",
     lang: "es",
-    service: "Auditoría de Ventas",
-    avatar: "/images/test-gabriela.png",
+    service: "Auditoría",
     rating: 5,
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
-};
-
 export function TestimonialsSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section id="testimonios" className="py-20 md:py-28 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-[#C9A84C]/3 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-[#C9A84C]/3 rounded-full blur-[80px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Section Title */}
+    <section id="testimonios" className="py-10 md:py-14 relative overflow-hidden">
+      {/* Section Title */}
+      <div className="max-w-7xl mx-auto px-4 text-center mb-8">
         <motion.div
-          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#C9A84C]/10 border border-[#C9A84C]/20 text-[#C9A84C] text-xs font-semibold uppercase tracking-wider mb-4">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#6B7F4E]/10 border border-[#6B7F4E]/20 text-[#8FA36E] text-[10px] font-semibold uppercase tracking-wider mb-3">
             Lo que dicen mis clientes
           </span>
           <h2
-            className="font-serif text-4xl md:text-5xl font-bold text-[#E8E0D4] mb-4"
+            className="font-serif text-3xl md:text-4xl font-bold text-[#E2D9CC] mb-2"
             style={{ fontFamily: "var(--font-playfair), serif" }}
           >
             Testimonios
           </h2>
-          <div className="w-24 h-1 bg-[#C9A84C] mx-auto rounded-full mb-4" />
-          <p className="text-[#8A8278] max-w-xl mx-auto text-sm">
-            Resultados reales de emprendedores y empresas en {testimonials.filter(t => t.lang === "es").length} países de habla hispana y anglosajona.
-          </p>
-        </motion.div>
-
-        {/* Testimonials Grid - Circular Cards */}
-        <motion.div
-          ref={ref}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {testimonials.map((testimonial, idx) => (
-            <motion.div
-              key={idx}
-              variants={cardVariants}
-              whileHover={{ y: -6, scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="group relative bg-[#1A1714] rounded-2xl border border-[rgba(201,168,76,0.12)] hover:border-[#C9A84C]/40 transition-all duration-500 p-5 flex flex-col items-center text-center"
-            >
-              {/* Circular Avatar */}
-              <div className="relative mb-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#C9A84C] via-[#E8D48B] to-[#C9A84C] p-[2px]">
-                  <div className="w-full h-full rounded-full bg-[#1A1714] flex items-center justify-center overflow-hidden">
-                    <span className="text-2xl">{testimonial.flag}</span>
-                  </div>
-                </div>
-                {/* Quote icon */}
-                <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#C9A84C] flex items-center justify-center">
-                  <Quote size={10} className="text-[#0F0D0B]" />
-                </div>
-              </div>
-
-              {/* Name & Country */}
-              <h4 className="text-[#E8E0D4] font-semibold text-sm mb-1">
-                {testimonial.name}
-              </h4>
-              <div className="flex items-center gap-1 text-[#8A8278] text-xs mb-3">
-                <MapPin size={10} className="text-[#C9A84C]" />
-                {testimonial.country}
-              </div>
-
-              {/* Stars */}
-              <div className="flex gap-0.5 mb-3">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <svg key={i} className="w-3.5 h-3.5 text-[#C9A84C]" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-
-              {/* Testimonial Text */}
-              <p className="text-[#8A8278] text-xs leading-relaxed flex-1 mb-3 line-clamp-4">
-                &ldquo;{testimonial.text}&rdquo;
-              </p>
-
-              {/* Service badge */}
-              <span className="text-[10px] px-2.5 py-1 rounded-full bg-[#0F0D0B] border border-[rgba(201,168,76,0.15)] text-[#C9A84C] font-medium">
-                {testimonial.service}
-              </span>
-
-              {/* Language indicator */}
-              <span className="mt-2 text-[9px] uppercase tracking-wider text-[#8A8278]/60">
-                {testimonial.lang === "es" ? "Español" : "English"}
-              </span>
-            </motion.div>
-          ))}
+          <div className="w-16 h-0.5 bg-[#6B7F4E] mx-auto rounded-full" />
         </motion.div>
       </div>
+
+      {/* Infinite Marquee Row */}
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="overflow-hidden">
+          <div className="testimonial-marquee flex gap-4 w-max">
+            {[...testimonials, ...testimonials].map((testimonial, idx) => (
+              <div
+                key={idx}
+                className="group flex-shrink-0 w-[220px] bg-[#1E1B16] rounded-xl border border-[rgba(107,127,78,0.1)] hover:border-[#6B7F4E]/30 transition-all duration-300 p-4 flex flex-col items-center text-center"
+              >
+                {/* Circular avatar with flag */}
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#4A5A35] via-[#6B7F4E] to-[#8FA36E] p-[2px] mb-3">
+                  <div className="w-full h-full rounded-full bg-[#1E1B16] flex items-center justify-center">
+                    <span className="text-lg">{testimonial.flag}</span>
+                  </div>
+                </div>
+
+                {/* Name */}
+                <h4 className="text-[#E2D9CC] font-semibold text-xs mb-0.5">
+                  {testimonial.name}
+                </h4>
+
+                {/* Country */}
+                <span className="text-[#9A8E80] text-[10px] mb-2">
+                  {testimonial.country}
+                </span>
+
+                {/* Stars */}
+                <div className="flex gap-0.5 mb-2">
+                  {Array.from({ length: testimonial.rating }).map((_, i) => (
+                    <Star key={i} className="w-2.5 h-2.5 text-[#6B7F4E]" fill="currentColor" />
+                  ))}
+                </div>
+
+                {/* Text */}
+                <p className="text-[#9A8E80] text-[10px] leading-relaxed mb-2 line-clamp-3">
+                  &ldquo;{testimonial.text}&rdquo;
+                </p>
+
+                {/* Service */}
+                <span className="text-[9px] px-2 py-0.5 rounded-full bg-[#0F0D0B] border border-[rgba(107,127,78,0.12)] text-[#6B7F4E]">
+                  {testimonial.service}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
