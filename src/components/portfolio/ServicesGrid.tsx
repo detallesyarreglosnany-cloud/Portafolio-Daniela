@@ -32,10 +32,19 @@ import {
   Filter,
   BarChart3,
   Plus,
-  ShoppingCartCart,
   Check,
+  Star,
+  Crown,
+  Flame,
 } from "lucide-react";
 import { useCart } from "./CartContext";
+
+interface ServiceTier {
+  name: string;
+  price: number;
+  label: string;
+  items: string[];
+}
 
 interface Service {
   icon: React.ReactNode;
@@ -43,7 +52,7 @@ interface Service {
   description: string;
   technicalDescription: string;
   features: string[];
-  tiers?: { name: string; items: string[] }[];
+  tiers?: ServiceTier[];
   price: string;
   priceValue: number;
   badge?: string;
@@ -80,7 +89,7 @@ const categories: ServiceCategory[] = [
           "Remarketing automatizado",
           "Tracking de conversión",
         ],
-        price: "Desde $89.00 USD",
+        price: "Desde $89 USD",
         priceValue: 89,
         image: "/images/srv-web.png",
       },
@@ -90,7 +99,7 @@ const categories: ServiceCategory[] = [
         description:
           "Tienda virtual completa con sistema de categorías organizado, hasta 100 productos con inventario en tiempo real. Fotos editadas, fichas técnicas y dashboard administrativo para gestionar pedidos, stock y envíos.",
         technicalDescription:
-          "Arquitectura de tienda con automatización de ventas, rescate de carritos abandonados y chatbot inteligente integrado. Cero fugas en el proceso de venta. Starter: Tienda base (Next.js) + Pasarelas de Pago + Chatbot. Pro: + Automatización de Rescate de Carritos (Email/WhatsApp) + Sincronización CRM. Premium: + App Móvil (PWA) + Analítica avanzada de conversión.",
+          "Arquitectura de tienda con automatización de ventas, rescate de carritos abandonados y chatbot inteligente integrado. Cero fugas en el proceso de venta.",
         features: [
           "Hasta 100 productos",
           "Inventario en tiempo real",
@@ -99,11 +108,11 @@ const categories: ServiceCategory[] = [
           "Sincronización CRM",
         ],
         tiers: [
-          { name: "Starter", items: ["Tienda base Next.js", "Pasarelas de Pago", "Chatbot integrado"] },
-          { name: "Pro", items: ["+ Rescate de carritos Email/WA", "+ Sincronización CRM", "+ Analítica básica"] },
-          { name: "Premium", items: ["+ App Móvil PWA", "+ Analítica avanzada", "+ Reportes automáticos"] },
+          { name: "Starter", price: 140, label: "Base", items: ["Tienda Next.js", "Pasarelas de Pago", "Chatbot integrado", "Hasta 50 productos"] },
+          { name: "Pro", price: 240, label: "Recomendado", items: ["+ Rescate carritos Email/WA", "+ Sincronización CRM", "+ Hasta 100 productos", "+ Analítica básica"] },
+          { name: "Premium", price: 390, label: "Más Completo", items: ["+ App Móvil PWA", "+ Analítica avanzada", "+ Productos ilimitados", "+ Reportes automáticos"] },
         ],
-        price: "Desde $140.00 USD",
+        price: "Desde $140 USD",
         priceValue: 140,
         image: "/images/srv-marketplace.png",
       },
@@ -113,7 +122,7 @@ const categories: ServiceCategory[] = [
         description:
           "Apps especializadas para sectores específicos: gimnasios, consultorios, bufetes, coaching. Sistema de autoservicio con agendamiento sincronizado, pagos directos y recordatorios automáticos por WhatsApp.",
         technicalDescription:
-          "Sistema de autoservicio para mentores, servicios digitales o presenciales con personalización en tiempo real. Gestión autónoma del cliente y del flujo de trabajo. Starter: Landing + Sistema de Reserva + Pagos. Pro: + Addons dinámicos (editor de servicios por el cliente) + Mapas de cobertura. Premium: + Acceso exclusivo clientes (Login) + Panel de gestión administrativo.",
+          "Sistema de autoservicio para mentores, servicios digitales o presenciales con personalización en tiempo real. Gestión autónoma del cliente y del flujo de trabajo.",
         features: [
           "Agendamiento al calendario",
           "Enlace a pagos directo",
@@ -122,11 +131,11 @@ const categories: ServiceCategory[] = [
           "Panel administrativo",
         ],
         tiers: [
-          { name: "Starter", items: ["Landing de alta conversión", "Sistema de reserva", "Pagos integrados"] },
-          { name: "Pro", items: ["+ Addons dinámicos", "+ Mapas de cobertura", "+ Editor de servicios"] },
-          { name: "Premium", items: ["+ Login de clientes", "+ Panel administrativo", "+ Reportes operativos"] },
+          { name: "Starter", price: 89, label: "Base", items: ["Landing de alta conversión", "Sistema de reserva", "Pagos integrados"] },
+          { name: "Pro", price: 160, label: "Recomendado", items: ["+ Addons dinámicos", "+ Mapas de cobertura", "+ Editor de servicios"] },
+          { name: "Premium", price: 260, label: "Más Completo", items: ["+ Login de clientes", "+ Panel administrativo", "+ Reportes operativos"] },
         ],
-        price: "Desde $89.00 USD",
+        price: "Desde $89 USD",
         priceValue: 89,
         image: "/images/srv-agendamiento.png",
       },
@@ -144,7 +153,7 @@ const categories: ServiceCategory[] = [
           "Sincronización de inventario",
           "Shoppable posts",
         ],
-        price: "Desde $110.00 USD",
+        price: "Desde $110 USD",
         priceValue: 110,
         isNew: true,
         image: "/images/srv-social-commerce.png",
@@ -155,7 +164,7 @@ const categories: ServiceCategory[] = [
         description:
           "Despliegue de software con sistema de suscripciones y panel de control robusto. Escalabilidad y seguridad desde el primer día para tu producto digital.",
         technicalDescription:
-          "Arquitectura SaaS completa con autenticación segura (OAuth/JWT), sistema de suscripciones con Stripe Billing, base de datos relacional con Prisma ORM, y despliegue en Vercel con CI/CD. Starter: Landing + Autenticación + Pagos. Pro: + Dashboard usuario + Base de datos personalizada. Premium: + Integración APIs externas + Funcionalidades avanzadas IA.",
+          "Arquitectura SaaS completa con autenticación segura (OAuth/JWT), sistema de suscripciones con Stripe Billing, base de datos relacional con Prisma ORM, y despliegue en Vercel con CI/CD.",
         features: [
           "Sistema de autenticación",
           "Suscripciones con Stripe",
@@ -164,11 +173,11 @@ const categories: ServiceCategory[] = [
           "Escalabilidad garantizada",
         ],
         tiers: [
-          { name: "Starter", items: ["Landing de ventas", "Sistema de autenticación", "Pagos integrados"] },
-          { name: "Pro", items: ["+ Dashboard de usuario", "+ Base de datos personalizada", "+ Admin panel"] },
-          { name: "Premium", items: ["+ APIs externas", "+ IA avanzada integrada", "+ Soporte prioritario"] },
+          { name: "Starter", price: 250, label: "Base", items: ["Landing de ventas", "Sistema de autenticación", "Pagos integrados"] },
+          { name: "Pro", price: 450, label: "Recomendado", items: ["+ Dashboard de usuario", "+ Base de datos personalizada", "+ Admin panel"] },
+          { name: "Premium", price: 750, label: "Más Completo", items: ["+ APIs externas", "+ IA avanzada integrada", "+ Soporte prioritario"] },
         ],
-        price: "Desde $250.00 USD",
+        price: "Desde $250 USD",
         priceValue: 250,
         isNew: true,
         image: "/images/srv-nocode.png",
@@ -187,7 +196,7 @@ const categories: ServiceCategory[] = [
         description:
           "Agente autónomo que vende, negocia y cierra ventas por ti las 24 horas. Notifica pagos, mantiene base de datos actualizada y comprende datos complejos del cliente. Incluye CRM integrado.",
         technicalDescription:
-          "Solución de IA conversacional para delegar la atención y venta 24/7. Reducción de carga operativa y aumento de la tasa de respuesta instantánea. Starter: Chatbot web con respuestas FAQ. Pro: Chatbot entrenado con base de conocimientos personalizada + Captación de datos. Premium: IA conversacional completa + Sincronización con Google Calendar (Agendamiento) + Reporte de eficiencia operativa.",
+          "Solución de IA conversacional para delegar la atención y venta 24/7. Reducción de carga operativa y aumento de la tasa de respuesta instantánea.",
         features: [
           "Venta autónoma 24/7",
           "Negociación inteligente",
@@ -196,11 +205,11 @@ const categories: ServiceCategory[] = [
           "Base de datos automática",
         ],
         tiers: [
-          { name: "Starter", items: ["Chatbot FAQ web", "Respuestas automáticas", "Captura básica"] },
-          { name: "Pro", items: ["+ Base de conocimientos IA", "+ Captación de datos", "+ CRM integrado"] },
-          { name: "Premium", items: ["+ Sincronización Calendar", "+ Agendamiento automático", "+ Reportes eficiencia"] },
+          { name: "Starter", price: 89, label: "Base", items: ["Chatbot FAQ web", "Respuestas automáticas", "Captura básica"] },
+          { name: "Pro", price: 160, label: "Recomendado", items: ["+ Base de conocimientos IA", "+ Captación de datos", "+ CRM integrado"] },
+          { name: "Premium", price: 260, label: "Más Completo", items: ["+ Sincronización Calendar", "+ Agendamiento automático", "+ Reportes eficiencia"] },
         ],
-        price: "Desde $89.00 USD",
+        price: "Desde $89 USD",
         priceValue: 89,
         image: "/images/srv-bot-whatsapp.png",
       },
@@ -218,7 +227,7 @@ const categories: ServiceCategory[] = [
           "RAG con bases vectoriales",
           "Mejora continua con ML",
         ],
-        price: "Desde $180.00 USD",
+        price: "Desde $180 USD",
         priceValue: 180,
         badge: "Popular",
         image: "/images/srv-agentes-ia.png",
@@ -237,7 +246,7 @@ const categories: ServiceCategory[] = [
           "Textos de alta virabilidad",
           "Edición profesional completa",
         ],
-        price: "Desde $35.00 USD",
+        price: "Desde $35 USD",
         priceValue: 35,
         image: "/images/srv-contenido-ia.png",
       },
@@ -255,7 +264,7 @@ const categories: ServiceCategory[] = [
           "Integración con CRM",
           "Transcripción automática",
         ],
-        price: "Desde $120.00 USD",
+        price: "Desde $120 USD",
         priceValue: 120,
         isNew: true,
         image: "/images/srv-voice-ai.png",
@@ -274,7 +283,7 @@ const categories: ServiceCategory[] = [
           "Automatización de onboarding",
           "Reportes automáticos",
         ],
-        price: "Desde $75.00 USD",
+        price: "Desde $75 USD",
         priceValue: 75,
         isNew: true,
         image: "/images/srv-nocode.png",
@@ -293,7 +302,7 @@ const categories: ServiceCategory[] = [
         description:
           "Sistema estratégico para captar y nutrir leads antes de la llamada de venta. Filtrado de prospectos de alto valor para negocios de servicios e infoproductos.",
         technicalDescription:
-          "Embudos de conversión con scoring de leads basado en IA. Secuencias de nutrición automatizadas con personalización dinámica por comportamiento. Starter: Embudo base + Captura de Leads. Pro: + Automatización de Nutrición (Secuencias Email/WhatsApp). Premium: + Integración IA para cualificación automática + Reporte de ROI en tiempo real.",
+          "Embudos de conversión con scoring de leads basado en IA. Secuencias de nutrición automatizadas con personalización dinámica por comportamiento.",
         features: [
           "Scoring de leads con IA",
           "Embudos personalizados",
@@ -302,11 +311,11 @@ const categories: ServiceCategory[] = [
           "Reporte de ROI",
         ],
         tiers: [
-          { name: "Starter", items: ["Embudo base", "Captura de leads", "Formularios inteligentes"] },
-          { name: "Pro", items: ["+ Nutrición Email/WA", "+ Secuencias automáticas", "+ Segmentación IA"] },
-          { name: "Premium", items: ["+ Cualificación IA automática", "+ Reporte ROI tiempo real", "+ A/B testing"] },
+          { name: "Starter", price: 150, label: "Base", items: ["Embudo base", "Captura de leads", "Formularios inteligentes"] },
+          { name: "Pro", price: 260, label: "Recomendado", items: ["+ Nutrición Email/WA", "+ Secuencias automáticas", "+ Segmentación IA"] },
+          { name: "Premium", price: 420, label: "Más Completo", items: ["+ Cualificación IA automática", "+ Reporte ROI tiempo real", "+ A/B testing"] },
         ],
-        price: "Desde $150.00 USD",
+        price: "Desde $150 USD",
         priceValue: 150,
         isNew: true,
         image: "/images/srv-campanas.png",
@@ -317,7 +326,7 @@ const categories: ServiceCategory[] = [
         description:
           "El puente técnico entre Meta Ads y la venta final. Maximiza el ROAS mediante tracking de precisión y API de Conversiones para que cada dólar invertido se contabilice.",
         technicalDescription:
-          "Implementación de Meta Pixel + Conversions API (CAPI) + Google Analytics 4 + UTMify para atribución multi-touch. Tracking server-side para evitar bloqueos de ad-blockers. Starter: Configuración técnica de Tracking (Pixel/CAPI/GA4). Pro: + Landing optimizada para tráfico pago + Integración CRM. Premium: + Sistema completo de atribución + Análisis detallado de conversión.",
+          "Implementación de Meta Pixel + Conversions API (CAPI) + Google Analytics 4 + UTMify para atribución multi-touch. Tracking server-side para evitar bloqueos de ad-blockers.",
         features: [
           "Meta Pixel + CAPI",
           "Google Analytics 4",
@@ -326,11 +335,11 @@ const categories: ServiceCategory[] = [
           "Tracking server-side",
         ],
         tiers: [
-          { name: "Starter", items: ["Pixel + CAPI", "GA4 configurado", "Eventos básicos"] },
-          { name: "Pro", items: ["+ Landing velocidad óptima", "+ Integración CRM", "+ Eventos avanzados"] },
-          { name: "Premium", items: ["+ Atribución completa", "+ Análisis conversión", "+ Reportes automáticos"] },
+          { name: "Starter", price: 199, label: "Base", items: ["Pixel + CAPI", "GA4 configurado", "Eventos básicos"] },
+          { name: "Pro", price: 340, label: "Recomendado", items: ["+ Landing velocidad óptima", "+ Integración CRM", "+ Eventos avanzados"] },
+          { name: "Premium", price: 550, label: "Más Completo", items: ["+ Atribución completa", "+ Análisis conversión", "+ Reportes automáticos"] },
         ],
-        price: "Desde $199.00 USD",
+        price: "Desde $199 USD",
         priceValue: 199,
         isNew: true,
         image: "/images/srv-omnichannel.png",
@@ -349,7 +358,7 @@ const categories: ServiceCategory[] = [
           "Reportes mensuales",
           "Optimización continua",
         ],
-        price: "Desde $65.00 USD",
+        price: "Desde $65 USD",
         priceValue: 65,
         image: "/images/srv-social-ads.png",
       },
@@ -367,7 +376,7 @@ const categories: ServiceCategory[] = [
           "31 días con seguimiento",
           "Sesiones de coaching directo",
         ],
-        price: "Desde $250.00 USD",
+        price: "Desde $250 USD",
         priceValue: 250,
         badge: "Premium",
         image: "/images/srv-asesoria.png",
@@ -386,7 +395,7 @@ const categories: ServiceCategory[] = [
           "Calendario optimizado",
           "Métricas de seguimiento",
         ],
-        price: "Desde $150.00 USD",
+        price: "Desde $150 USD",
         priceValue: 150,
         image: "/images/srv-campanas.png",
       },
@@ -404,7 +413,7 @@ const categories: ServiceCategory[] = [
           "Respuestas inteligentes por canal",
           "Reportes consolidados",
         ],
-        price: "Desde $199.00 USD",
+        price: "Desde $199 USD",
         priceValue: 199,
         image: "/images/srv-omnichannel.png",
       },
@@ -441,7 +450,7 @@ const categories: ServiceCategory[] = [
           "Soporte por comunidad",
           "Recursos exclusivos",
         ],
-        price: "Desde $97.00 USD",
+        price: "Desde $97 USD",
         priceValue: 97,
         image: "/images/srv-mentorship.png",
       },
@@ -469,16 +478,15 @@ const cardVariants = {
   },
 };
 
-function getWhatsAppLink(serviceTitle: string, price: string) {
+function getWhatsAppLink(serviceTitle: string, tierName: string, price: string) {
   const msg = encodeURIComponent(
-    `Hola Daniela! Me interesa el servicio: ${serviceTitle} (${price}). Me gustaría más información. Gracias!`
+    `Hola Daniela! Me interesa el servicio: ${serviceTitle} — Plan ${tierName} (${price}). Me gustaría más información. Gracias!`
   );
   return `https://wa.me/584221754245?text=${msg}`;
 }
 
 function ServiceCard({ service, categoryId }: { service: Service; categoryId: string }) {
   const [showDetail, setShowDetail] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
   const { addItem, removeItem, items } = useCart();
 
   const cartItemId = `${categoryId}-${service.title}`;
@@ -488,7 +496,6 @@ function ServiceCard({ service, categoryId }: { service: Service; categoryId: st
     e.stopPropagation();
     if (isInCart) {
       removeItem(cartItemId);
-      setIsSelected(false);
     } else {
       addItem({
         id: cartItemId,
@@ -497,7 +504,6 @@ function ServiceCard({ service, categoryId }: { service: Service; categoryId: st
         priceValue: service.priceValue,
         type: "servicio",
       });
-      setIsSelected(true);
     }
   };
 
@@ -548,11 +554,16 @@ function ServiceCard({ service, categoryId }: { service: Service; categoryId: st
           </h3>
         </div>
 
-        {/* Price highlight */}
-        <div className="mb-2">
+        {/* Price + tier count */}
+        <div className="mb-2 flex items-center gap-2">
           <span className={`font-bold text-sm ${service.priceValue === 0 ? "text-emerald-400 neon-price-free" : "text-[#8FA36E] neon-price"}`}>
             {service.price}
           </span>
+          {service.tiers && (
+            <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-[#6B7F4E]/10 text-[#8FA36E] font-semibold border border-[#6B7F4E]/20">
+              3 planes
+            </span>
+          )}
         </div>
 
         <div className="space-y-1 mb-3 flex-1">
@@ -574,7 +585,7 @@ function ServiceCard({ service, categoryId }: { service: Service; categoryId: st
             className="flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg btn-tech text-[#8FA36E] text-[9px] font-semibold uppercase tracking-wider"
           >
             <Eye size={11} />
-            Detalles
+            {service.tiers ? "Ver Planes" : "Detalles"}
           </button>
           <button
             onClick={handleToggleCart}
@@ -600,6 +611,7 @@ function ServiceCard({ service, categoryId }: { service: Service; categoryId: st
         </div>
       </motion.div>
 
+      {/* ========= MODAL DETAIL ========= */}
       <AnimatePresence>
         {showDetail && (
           <motion.div
@@ -667,66 +679,166 @@ function ServiceCard({ service, categoryId }: { service: Service; categoryId: st
                   ))}
                 </div>
 
-                {/* Tiers */}
+                {/* ===== TIERS WITH PRICES ===== */}
                 {service.tiers && (
                   <div className="space-y-3 mb-4">
-                    <h4 className="text-[#6B7F4E] text-[10px] font-bold uppercase tracking-wider">Planes Disponibles</h4>
-                    <div className="grid grid-cols-3 gap-2">
-                      {service.tiers.map((tier, tIdx) => (
-                        <div key={tIdx} className={`rounded-lg p-3 border ${
-                          tIdx === 1 ? "border-[#6B7F4E]/40 bg-[#6B7F4E]/5" : "border-[rgba(107,127,78,0.12)] bg-[#0F0D0B]"
-                        }`}>
-                          <span className={`text-[10px] font-bold uppercase tracking-wider ${
-                            tIdx === 1 ? "text-[#8FA36E] neon-subtitle" : "text-[#9A8E80]"
-                          }`}>{tier.name}</span>
-                          <div className="mt-1.5 space-y-1">
-                            {tier.items.map((item, iIdx) => (
-                              <div key={iIdx} className="flex items-start gap-1">
-                                <CheckCircle2 size={8} className="text-[#6B7F4E] flex-shrink-0 mt-0.5" />
-                                <span className="text-[#9A8E80] text-[9px] leading-tight">{item}</span>
+                    <h4 className="text-[#6B7F4E] text-[10px] font-bold uppercase tracking-wider">Elige tu Plan</h4>
+                    <div className="space-y-2">
+                      {service.tiers.map((tier, tIdx) => {
+                        const tierCartId = `${categoryId}-${service.title}-${tier.name}`;
+                        const isTierInCart = items.some((i) => i.id === tierCartId);
+                        const isRecommended = tier.label === "Recomendado";
+                        const isPremium = tier.label === "Más Completo";
+
+                        return (
+                          <div
+                            key={tIdx}
+                            className={`relative rounded-xl p-4 border transition-all duration-300 ${
+                              isRecommended
+                                ? "border-[#6B7F4E] bg-[#6B7F4E]/8 shadow-[0_0_15px_rgba(107,127,78,0.12)]"
+                                : isPremium
+                                ? "border-[#8FA36E]/30 bg-[#1E1B16]"
+                                : "border-[rgba(107,127,78,0.12)] bg-[#0F0D0B]/50"
+                            }`}
+                          >
+                            {/* Recommended badge */}
+                            {isRecommended && (
+                              <div className="absolute -top-2.5 left-4">
+                                <span className="px-2.5 py-0.5 rounded-full bg-[#6B7F4E] text-[#0F0D0B] text-[8px] font-bold uppercase tracking-wider flex items-center gap-1">
+                                  <Star size={8} fill="currentColor" />
+                                  Recomendado
+                                </span>
                               </div>
-                            ))}
+                            )}
+                            {isPremium && (
+                              <div className="absolute -top-2.5 left-4">
+                                <span className="px-2.5 py-0.5 rounded-full bg-[#8FA36E]/20 text-[#8FA36E] border border-[#8FA36E]/30 text-[8px] font-bold uppercase tracking-wider flex items-center gap-1">
+                                  <Crown size={8} />
+                                  Más Completo
+                                </span>
+                              </div>
+                            )}
+
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <span className={`text-xs font-bold uppercase tracking-wider ${
+                                    isRecommended ? "text-[#8FA36E] neon-subtitle" : isPremium ? "text-[#8FA36E]" : "text-[#9A8E80]"
+                                  }`}>
+                                    {tier.name}
+                                  </span>
+                                </div>
+
+                                {/* Tier price */}
+                                <div className="mb-2">
+                                  <span className={`font-bold text-xl ${
+                                    isRecommended ? "text-[#8FA36E] neon-price" : isPremium ? "text-[#8FA36E] neon-price" : "text-[#6B7F4E] neon-price"
+                                  }`}>
+                                    ${tier.price}
+                                  </span>
+                                  <span className="text-[#9A8E80] text-[10px] ml-1">USD</span>
+                                </div>
+
+                                {/* Tier items */}
+                                <div className="space-y-1">
+                                  {tier.items.map((item, iIdx) => (
+                                    <div key={iIdx} className="flex items-start gap-1.5">
+                                      <CheckCircle2 size={10} className="text-[#6B7F4E] flex-shrink-0 mt-0.5" />
+                                      <span className="text-[#E2D9CC] text-[11px] leading-tight">{item}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Tier actions */}
+                            <div className="flex gap-2 mt-3">
+                              <a
+                                href={getWhatsAppLink(service.title, tier.name, `$${tier.price} USD`)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg font-bold text-[10px] uppercase tracking-wider transition-all duration-300 ${
+                                  isRecommended
+                                    ? "btn-tech-primary text-[#E2D9CC]"
+                                    : "btn-tech text-[#8FA36E]"
+                                }`}
+                              >
+                                <MessageCircle size={11} />
+                                Cotizar
+                              </a>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (isTierInCart) {
+                                    removeItem(tierCartId);
+                                  } else {
+                                    addItem({
+                                      id: tierCartId,
+                                      title: `${service.title} — ${tier.name}`,
+                                      price: `$${tier.price} USD`,
+                                      priceValue: tier.price,
+                                      type: "servicio",
+                                    });
+                                  }
+                                }}
+                                className={`flex items-center justify-center gap-1 py-2 px-3 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-all duration-300 ${
+                                  isTierInCart
+                                    ? "bg-[#6B7F4E] text-[#0F0D0B] border border-[#8FA36E]"
+                                    : isRecommended
+                                    ? "bg-[#6B7F4E]/10 border border-[#6B7F4E]/30 text-[#8FA36E]"
+                                    : "btn-tech text-[#9A8E80]"
+                                }`}
+                                style={isTierInCart ? { boxShadow: "0 0 8px rgba(107, 127, 78, 0.4)" } : {}}
+                              >
+                                {isTierInCart ? <Check size={10} /> : <Plus size={10} />}
+                                {isTierInCart ? "Agregado" : "Agregar"}
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}
 
-                {/* Price with neon */}
-                <div className="bg-[#0F0D0B] rounded-xl p-3.5 border border-[rgba(107,127,78,0.2)] mb-4">
-                  <span className={`font-bold text-lg ${service.priceValue === 0 ? "text-emerald-400 neon-price-free" : "text-[#8FA36E] neon-price"}`}>
-                    {service.price}
-                  </span>
-                </div>
+                {/* Single price (for services without tiers) */}
+                {!service.tiers && (
+                  <div className="bg-[#0F0D0B] rounded-xl p-3.5 border border-[rgba(107,127,78,0.2)] mb-4">
+                    <span className={`font-bold text-lg ${service.priceValue === 0 ? "text-emerald-400 neon-price-free" : "text-[#8FA36E] neon-price"}`}>
+                      {service.price}
+                    </span>
+                  </div>
+                )}
 
-                {/* Action Buttons */}
-                <div className="flex gap-3">
-                  <a
-                    href={getWhatsAppLink(service.title, service.price)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl btn-tech-primary text-[#E2D9CC] font-bold text-xs uppercase tracking-wider"
-                  >
-                    <MessageCircle size={14} />
-                    Cotizar Ahora
-                  </a>
-                  <button
-                    onClick={(e) => {
-                      handleToggleCart(e);
-                      setShowDetail(false);
-                    }}
-                    className={`flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
-                      isInCart
-                        ? "bg-[#6B7F4E] text-[#0F0D0B] border border-[#8FA36E]"
-                        : "btn-tech text-[#8FA36E]"
-                    }`}
-                    style={isInCart ? { boxShadow: "0 0 10px rgba(107, 127, 78, 0.4)" } : {}}
-                  >
-                    {isInCart ? <Check size={14} /> : <Plus size={14} />}
-                    {isInCart ? "Agregado" : "Al Carrito"}
-                  </button>
-                </div>
+                {/* Action Buttons (for services without tiers) */}
+                {!service.tiers && (
+                  <div className="flex gap-3">
+                    <a
+                      href={getWhatsAppLink(service.title, "Único", service.price)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl btn-tech-primary text-[#E2D9CC] font-bold text-xs uppercase tracking-wider"
+                    >
+                      <MessageCircle size={14} />
+                      Cotizar Ahora
+                    </a>
+                    <button
+                      onClick={(e) => {
+                        handleToggleCart(e);
+                        setShowDetail(false);
+                      }}
+                      className={`flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+                        isInCart
+                          ? "bg-[#6B7F4E] text-[#0F0D0B] border border-[#8FA36E]"
+                          : "btn-tech text-[#8FA36E]"
+                      }`}
+                      style={isInCart ? { boxShadow: "0 0 10px rgba(107, 127, 78, 0.4)" } : {}}
+                    >
+                      {isInCart ? <Check size={14} /> : <Plus size={14} />}
+                      {isInCart ? "Agregado" : "Al Carrito"}
+                    </button>
+                  </div>
+                )}
               </div>
             </motion.div>
           </motion.div>
@@ -749,7 +861,6 @@ function CategorySection({ category, defaultOpen = false }: { category: ServiceC
       transition={{ duration: 0.5 }}
       className="mb-6"
     >
-      {/* Category Header - Clickable */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full group flex items-center justify-between bg-[#1E1B16] rounded-xl border border-[rgba(107,127,78,0.15)] hover:border-[#6B7F4E]/30 transition-all duration-300 p-4 md:p-5"
@@ -775,7 +886,6 @@ function CategorySection({ category, defaultOpen = false }: { category: ServiceC
         </motion.div>
       </button>
 
-      {/* Services Grid - Expandable */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -806,7 +916,6 @@ export function ServicesGrid() {
   return (
     <section id="servicios" className="py-10 md:py-14 px-4 relative">
       <div className="max-w-7xl mx-auto">
-        {/* Section Title */}
         <div className="text-center mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -830,7 +939,6 @@ export function ServicesGrid() {
           </motion.div>
         </div>
 
-        {/* Categories */}
         {categories.map((category, idx) => (
           <CategorySection key={category.id} category={category} defaultOpen={idx === 0} />
         ))}
