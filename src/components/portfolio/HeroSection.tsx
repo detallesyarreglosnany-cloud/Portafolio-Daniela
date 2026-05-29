@@ -31,7 +31,7 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 sm:pt-28 md:pt-16"
     >
       {/* Background particles */}
       <div className="absolute inset-0 pointer-events-none">
@@ -66,7 +66,7 @@ export function HeroSection() {
         animate="visible"
       >
         {/* Profile Photo */}
-        <motion.div variants={itemVariants} className="flex justify-center mb-6">
+        <motion.div variants={itemVariants} className="flex justify-center mb-4 sm:mb-6">
           <div className="relative">
             {/* Outer ring glow */}
             <div className="absolute inset-[-6px] rounded-full bg-gradient-to-r from-[#4A5A35] via-[#6B7F4E] to-[#8FA36E] opacity-20 blur-md animate-pulse-scale" />
@@ -90,7 +90,7 @@ export function HeroSection() {
         </motion.div>
 
         {/* Name */}
-        <motion.div variants={itemVariants} className="mb-2">
+        <motion.div variants={itemVariants} className="mb-3 sm:mb-2">
           <h1
             className="olive-shimmer font-serif text-5xl sm:text-6xl md:text-8xl font-bold tracking-tight leading-none"
             style={{
@@ -104,7 +104,7 @@ export function HeroSection() {
         </motion.div>
 
         {/* Decorative divider */}
-        <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 my-5">
+        <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 my-3 sm:my-5">
           <div className="w-16 sm:w-24 h-[1px] bg-gradient-to-r from-transparent to-[#6B7F4E]" />
           <Star size={12} className="text-[#6B7F4E]" fill="currentColor" />
           <div className="w-16 sm:w-24 h-[1px] bg-gradient-to-l from-transparent to-[#6B7F4E]" />

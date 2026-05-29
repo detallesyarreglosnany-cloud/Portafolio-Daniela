@@ -54,7 +54,7 @@ export function ClosingSection() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="https://wa.me/584221754245"
+            href="https://wa.me/584221754245?text=Hola%20Daniela!%20Quiero%20transformar%20mi%20negocio%20con%20IA.%20Me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20servicios.%20Gracias!"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-mega btn-tech-primary inline-flex items-center gap-3 text-[#E2D9CC] font-bold px-8 py-3.5 rounded-xl text-base uppercase tracking-wider"

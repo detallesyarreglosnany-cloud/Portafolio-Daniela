@@ -28,13 +28,14 @@ import {
   Store,
   Cpu,
   Megaphone,
-  ShoppingCartCart,
-  CalendarCheck,
   Code2,
   Filter,
   BarChart3,
-  Headphones,
+  Plus,
+  ShoppingCartCart,
+  Check,
 } from "lucide-react";
+import { useCart } from "./CartContext";
 
 interface Service {
   icon: React.ReactNode;
@@ -165,7 +166,7 @@ const categories: ServiceCategory[] = [
         tiers: [
           { name: "Starter", items: ["Landing de ventas", "Sistema de autenticación", "Pagos integrados"] },
           { name: "Pro", items: ["+ Dashboard de usuario", "+ Base de datos personalizada", "+ Admin panel"] },
-          { name: "Premium", items: ["+ APIs externas", + "IA avanzada integrada", "+ Soporte prioritario"] },
+          { name: "Premium", items: ["+ APIs externas", "+ IA avanzada integrada", "+ Soporte prioritario"] },
         ],
         price: "Desde $250.00 USD",
         priceValue: 250,
@@ -340,7 +341,7 @@ const categories: ServiceCategory[] = [
         description:
           "Administración estratégica de Instagram, Facebook, TikTok y Telegram. Contenido calendarizado, diseño gráfico, análisis de ROI y optimización continua.",
         technicalDescription:
-          "Gestión con herramientas profesionales: Meta Business Suite, Later/Buffer para programación, Canva Pro para diseño, y analítica nativa +第三方 herramientas para medición. Reportes semanales con métricas de alcance, engagement, conversión y ROAS por plataforma.",
+          "Gestión con herramientas profesionales: Meta Business Suite, Later/Buffer para programación, Canva Pro para diseño, y analítica nativa + terceros para medición. Reportes semanales con métricas de alcance, engagement, conversión y ROAS por plataforma.",
         features: [
           "Instagram, Facebook, TikTok, Telegram",
           "Contenido estratégico calendarizado",
@@ -377,7 +378,7 @@ const categories: ServiceCategory[] = [
         description:
           "Estructura paso a paso para campañas que se comparten solas. Templates, copy persuasivo, estrategia de lanzamiento en fases y métricas de seguimiento.",
         technicalDescription:
-          "Framework de viralidad con análisis de tendencias en tiempo real (TikTok Creative Center + Meta Ad Library), A/B testing de creatividades, sequencia de lanzamiento en 3 fases (teaser, lanzamiento, escala), y pixel tracking de shares orgánicos para optimización continua.",
+          "Framework de viralidad con análisis de tendencias en tiempo real (TikTok Creative Center + Meta Ad Library), A/B testing de creatividades, secuencia de lanzamiento en 3 fases (teaser, lanzamiento, escala), y pixel tracking de shares orgánicos para optimización continua.",
         features: [
           "Estructura paso a paso",
           "Templates de contenido",
@@ -395,7 +396,7 @@ const categories: ServiceCategory[] = [
         description:
           "Conecta WhatsApp, Instagram, Facebook y Email en un solo dashboard. Automatización de mensajes cruzados y respuestas inteligentes por canal.",
         technicalDescription:
-          "Arquitectura de integración con webhook centralizados, API de WhatsApp Business, Meta Graph API, y conectores de email (Mailchimp/SendGrid). Dashboard unificado con CRM bidireccional, auto-respuestas con NLP y enrutamiento inteligente por canal.",
+          "Arquitectura de integración con webhooks centralizados, API de WhatsApp Business, Meta Graph API, y conectores de email (Mailchimp/SendGrid). Dashboard unificado con CRM bidireccional, auto-respuestas con NLP y enrutamiento inteligente por canal.",
         features: [
           "Dashboard unificado",
           "Automatización total",
@@ -468,14 +469,47 @@ const cardVariants = {
   },
 };
 
-function ServiceCard({ service }: { service: Service }) {
+function getWhatsAppLink(serviceTitle: string, price: string) {
+  const msg = encodeURIComponent(
+    `Hola Daniela! Me interesa el servicio: ${serviceTitle} (${price}). Me gustaría más información. Gracias!`
+  );
+  return `https://wa.me/584221754245?text=${msg}`;
+}
+
+function ServiceCard({ service, categoryId }: { service: Service; categoryId: string }) {
   const [showDetail, setShowDetail] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
+  const { addItem, removeItem, items } = useCart();
+
+  const cartItemId = `${categoryId}-${service.title}`;
+  const isInCart = items.some((i) => i.id === cartItemId);
+
+  const handleToggleCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isInCart) {
+      removeItem(cartItemId);
+      setIsSelected(false);
+    } else {
+      addItem({
+        id: cartItemId,
+        title: service.title,
+        price: service.price,
+        priceValue: service.priceValue,
+        type: "servicio",
+      });
+      setIsSelected(true);
+    }
+  };
 
   return (
     <>
       <motion.div
         variants={cardVariants}
-        className="group relative bg-[#1E1B16] rounded-xl overflow-hidden border border-[rgba(107,127,78,0.12)] hover:border-[#6B7F4E]/40 transition-all duration-300 p-4 flex flex-col"
+        className={`group relative bg-[#1E1B16] rounded-xl overflow-hidden border transition-all duration-300 p-4 flex flex-col ${
+          isInCart
+            ? "service-selected border-[#8FA36E]"
+            : "border-[rgba(107,127,78,0.12)] hover:border-[#6B7F4E]/40"
+        }`}
       >
         {service.badge && (
           <div className="absolute top-3 right-3">
@@ -502,12 +536,23 @@ function ServiceCard({ service }: { service: Service }) {
         )}
 
         <div className="flex items-start gap-2.5 mb-2.5">
-          <div className="w-8 h-8 rounded-lg bg-[#6B7F4E]/10 border border-[#6B7F4E]/20 flex items-center justify-center text-[#6B7F4E] flex-shrink-0 group-hover:bg-[#6B7F4E] group-hover:text-[#0F0D0B] transition-all duration-300">
+          <div
+            className={`service-icon-box w-8 h-8 rounded-lg bg-[#6B7F4E]/10 border border-[#6B7F4E]/20 flex items-center justify-center text-[#6B7F4E] flex-shrink-0 transition-all duration-300 ${
+              isInCart ? "" : "group-hover:bg-[#6B7F4E] group-hover:text-[#0F0D0B]"
+            }`}
+          >
             {service.icon}
           </div>
-          <h3 className="text-[#E2D9CC] font-bold text-xs leading-tight group-hover:text-[#8FA36E] transition-colors duration-300">
+          <h3 className="text-[#E2D9CC] font-bold text-xs leading-tight group-hover:text-[#8FA36E] transition-colors duration-300 neon-subtitle">
             {service.title}
           </h3>
+        </div>
+
+        {/* Price highlight */}
+        <div className="mb-2">
+          <span className={`font-bold text-sm ${service.priceValue === 0 ? "text-emerald-400 neon-price-free" : "text-[#8FA36E] neon-price"}`}>
+            {service.price}
+          </span>
         </div>
 
         <div className="space-y-1 mb-3 flex-1">
@@ -522,13 +567,37 @@ function ServiceCard({ service }: { service: Service }) {
           )}
         </div>
 
-        <button
-          onClick={() => setShowDetail(true)}
-          className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg btn-tech text-[#8FA36E] text-[10px] font-semibold uppercase tracking-wider"
-        >
-          <Eye size={12} />
-          Ver Precio & Detalles
-        </button>
+        {/* Action Buttons */}
+        <div className="flex gap-2">
+          <button
+            onClick={() => setShowDetail(true)}
+            className="flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg btn-tech text-[#8FA36E] text-[9px] font-semibold uppercase tracking-wider"
+          >
+            <Eye size={11} />
+            Detalles
+          </button>
+          <button
+            onClick={handleToggleCart}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg text-[9px] font-semibold uppercase tracking-wider transition-all duration-300 ${
+              isInCart
+                ? "bg-[#6B7F4E] text-[#0F0D0B] border border-[#8FA36E]"
+                : "btn-tech-primary text-[#E2D9CC]"
+            }`}
+            style={isInCart ? { boxShadow: "0 0 10px rgba(107, 127, 78, 0.4)" } : {}}
+          >
+            {isInCart ? (
+              <>
+                <Check size={11} />
+                Agregado
+              </>
+            ) : (
+              <>
+                <Plus size={11} />
+                Agregar
+              </>
+            )}
+          </button>
+        </div>
       </motion.div>
 
       <AnimatePresence>
@@ -563,7 +632,7 @@ function ServiceCard({ service }: { service: Service }) {
                     {service.icon}
                   </div>
                   <div>
-                    <h3 className="text-[#E2D9CC] font-bold text-base leading-tight">{service.title}</h3>
+                    <h3 className="text-[#E2D9CC] font-bold text-base leading-tight neon-subtitle">{service.title}</h3>
                     {service.badge && (
                       <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${
                         service.badge === "Gratis" ? "bg-emerald-500/15 text-emerald-400" : "bg-[#6B7F4E]/15 text-[#8FA36E]"
@@ -608,7 +677,7 @@ function ServiceCard({ service }: { service: Service }) {
                           tIdx === 1 ? "border-[#6B7F4E]/40 bg-[#6B7F4E]/5" : "border-[rgba(107,127,78,0.12)] bg-[#0F0D0B]"
                         }`}>
                           <span className={`text-[10px] font-bold uppercase tracking-wider ${
-                            tIdx === 1 ? "text-[#8FA36E]" : "text-[#9A8E80]"
+                            tIdx === 1 ? "text-[#8FA36E] neon-subtitle" : "text-[#9A8E80]"
                           }`}>{tier.name}</span>
                           <div className="mt-1.5 space-y-1">
                             {tier.items.map((item, iIdx) => (
@@ -624,22 +693,40 @@ function ServiceCard({ service }: { service: Service }) {
                   </div>
                 )}
 
-                {/* Price */}
+                {/* Price with neon */}
                 <div className="bg-[#0F0D0B] rounded-xl p-3.5 border border-[rgba(107,127,78,0.2)] mb-4">
-                  <span className={`font-bold text-lg ${service.priceValue === 0 ? "text-emerald-400" : "text-[#8FA36E]"}`}>
+                  <span className={`font-bold text-lg ${service.priceValue === 0 ? "text-emerald-400 neon-price-free" : "text-[#8FA36E] neon-price"}`}>
                     {service.price}
                   </span>
                 </div>
 
-                <a
-                  href="https://wa.me/584221754245"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl btn-tech-primary text-[#E2D9CC] font-bold text-xs uppercase tracking-wider"
-                >
-                  <MessageCircle size={14} />
-                  Cotizar Ahora
-                </a>
+                {/* Action Buttons */}
+                <div className="flex gap-3">
+                  <a
+                    href={getWhatsAppLink(service.title, service.price)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl btn-tech-primary text-[#E2D9CC] font-bold text-xs uppercase tracking-wider"
+                  >
+                    <MessageCircle size={14} />
+                    Cotizar Ahora
+                  </a>
+                  <button
+                    onClick={(e) => {
+                      handleToggleCart(e);
+                      setShowDetail(false);
+                    }}
+                    className={`flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+                      isInCart
+                        ? "bg-[#6B7F4E] text-[#0F0D0B] border border-[#8FA36E]"
+                        : "btn-tech text-[#8FA36E]"
+                    }`}
+                    style={isInCart ? { boxShadow: "0 0 10px rgba(107, 127, 78, 0.4)" } : {}}
+                  >
+                    {isInCart ? <Check size={14} /> : <Plus size={14} />}
+                    {isInCart ? "Agregado" : "Al Carrito"}
+                  </button>
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -672,7 +759,7 @@ function CategorySection({ category, defaultOpen = false }: { category: ServiceC
             {category.icon}
           </div>
           <div className="text-left">
-            <h3 className="text-[#E2D9CC] font-bold text-sm md:text-base">{category.title}</h3>
+            <h3 className="text-[#E2D9CC] font-bold text-sm md:text-base neon-subtitle">{category.title}</h3>
             <p className="text-[#9A8E80] text-[10px] md:text-xs">{category.subtitle}</p>
           </div>
           <span className="ml-2 text-[9px] px-2 py-0.5 rounded-full bg-[#6B7F4E]/15 text-[#8FA36E] font-semibold">
@@ -705,7 +792,7 @@ function CategorySection({ category, defaultOpen = false }: { category: ServiceC
               animate="visible"
             >
               {category.services.map((service, idx) => (
-                <ServiceCard key={idx} service={service} />
+                <ServiceCard key={idx} service={service} categoryId={category.id} />
               ))}
             </motion.div>
           </motion.div>
@@ -731,7 +818,7 @@ export function ServicesGrid() {
               Lo que hago
             </span>
             <h2
-              className="font-serif text-3xl md:text-4xl font-bold text-[#E2D9CC] mb-2"
+              className="font-serif text-3xl md:text-4xl font-bold text-[#E2D9CC] mb-2 neon-subtitle"
               style={{ fontFamily: "var(--font-playfair), serif" }}
             >
               Mis Servicios

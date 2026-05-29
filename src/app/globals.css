@@ -181,7 +181,7 @@
   animation: glowBorder 2s ease-in-out infinite;
 }
 
-/* ========== TECH BUTTON STYLE ========== */
+/* ========== TECH BUTTON STYLE (NEON) ========== */
 .btn-tech {
   position: relative;
   z-index: 0;
@@ -189,12 +189,13 @@
   border: 1px solid rgba(107, 127, 78, 0.4);
   background: linear-gradient(135deg, rgba(107, 127, 78, 0.08) 0%, rgba(74, 90, 53, 0.04) 100%);
   backdrop-filter: blur(8px);
+  box-shadow: 0 0 8px rgba(107, 127, 78, 0.15), inset 0 0 8px rgba(107, 127, 78, 0.05);
 }
 
 .btn-tech:hover {
-  border-color: #6B7F4E;
+  border-color: #8FA36E;
   background: linear-gradient(135deg, rgba(107, 127, 78, 0.2) 0%, rgba(74, 90, 53, 0.1) 100%);
-  box-shadow: 0 0 20px rgba(107, 127, 78, 0.15), inset 0 0 20px rgba(107, 127, 78, 0.05);
+  box-shadow: 0 0 15px rgba(107, 127, 78, 0.35), 0 0 30px rgba(107, 127, 78, 0.15), inset 0 0 15px rgba(107, 127, 78, 0.08);
   transform: translateY(-1px);
 }
 
@@ -202,13 +203,14 @@
   position: relative;
   z-index: 0;
   background: linear-gradient(135deg, #6B7F4E 0%, #4A5A35 100%);
-  border: 1px solid rgba(143, 163, 110, 0.3);
+  border: 1px solid rgba(143, 163, 110, 0.5);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 0 10px rgba(107, 127, 78, 0.3), 0 0 20px rgba(107, 127, 78, 0.1);
 }
 
 .btn-tech-primary:hover {
   background: linear-gradient(135deg, #8FA36E 0%, #6B7F4E 100%);
-  box-shadow: 0 4px 20px rgba(107, 127, 78, 0.3), 0 0 40px rgba(107, 127, 78, 0.1);
+  box-shadow: 0 0 20px rgba(107, 127, 78, 0.5), 0 0 40px rgba(107, 127, 78, 0.2), 0 0 60px rgba(107, 127, 78, 0.08);
   transform: translateY(-2px);
 }
 
@@ -219,6 +221,66 @@
   border-radius: inherit;
   background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
   pointer-events: none;
+}
+
+/* ========== NEON PRICE GLOW ========== */
+.neon-price {
+  text-shadow: 0 0 8px rgba(107, 127, 78, 0.6), 0 0 16px rgba(107, 127, 78, 0.3), 0 0 24px rgba(107, 127, 78, 0.15);
+}
+
+.neon-price-free {
+  text-shadow: 0 0 8px rgba(52, 211, 153, 0.6), 0 0 16px rgba(52, 211, 153, 0.3), 0 0 24px rgba(52, 211, 153, 0.15);
+}
+
+/* ========== SERVICE CARD SELECTED GLOW ========== */
+.service-selected {
+  border-color: #8FA36E !important;
+  box-shadow: 0 0 15px rgba(107, 127, 78, 0.3), 0 0 30px rgba(107, 127, 78, 0.15), inset 0 0 15px rgba(107, 127, 78, 0.05) !important;
+}
+
+.service-selected .service-icon-box {
+  background: #6B7F4E !important;
+  color: #0F0D0B !important;
+  box-shadow: 0 0 12px rgba(107, 127, 78, 0.5);
+}
+
+/* ========== NEON SUBTITLE ========== */
+.neon-subtitle {
+  text-shadow: 0 0 6px rgba(107, 127, 78, 0.4), 0 0 12px rgba(107, 127, 78, 0.2);
+}
+
+/* ========== INFINITE MARQUEE BANNER ========== */
+@keyframes infiniteMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.infinite-marquee-track {
+  animation: infiniteMarquee 18s linear infinite;
+}
+
+.infinite-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ========== ICON GLOW LOOP ========== */
+@keyframes iconGlow {
+  0%, 100% { filter: drop-shadow(0 0 3px rgba(107, 127, 78, 0.3)); }
+  50% { filter: drop-shadow(0 0 8px rgba(107, 127, 78, 0.7)) drop-shadow(0 0 14px rgba(107, 127, 78, 0.3)); }
+}
+
+.icon-glow-loop {
+  animation: iconGlow 2s ease-in-out infinite;
+}
+
+/* ========== CART BADGE PULSE ========== */
+@keyframes cartBadgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.cart-badge-pulse {
+  animation: cartBadgePulse 1.5s ease-in-out infinite;
 }
 
 /* ========== MEGA BUTTON ========== */

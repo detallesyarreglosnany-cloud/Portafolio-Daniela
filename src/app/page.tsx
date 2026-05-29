@@ -15,27 +15,32 @@ import { ClosingSection } from "@/components/portfolio/ClosingSection";
 import { Footer } from "@/components/portfolio/Footer";
 import { WhatsAppButton } from "@/components/portfolio/WhatsAppButton";
 import { ChatBotWidget } from "@/components/portfolio/ChatBotWidget";
+import { CartProvider } from "@/components/portfolio/CartContext";
+import { FloatingCart } from "@/components/portfolio/FloatingCart";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#0F0D0B]">
-      <Header />
-      <AvailabilityBar />
-      <main className="flex-1">
-        <HeroSection />
-        <AboutSection />
-        <TechStackMarquee />
-        <ServicesGrid />
-        <PricingSection />
-        <ProjectCarousel />
-        <TestimonialsSection />
-        <ResourcesSection />
-        <FAQSection />
-        <ClosingSection />
-      </main>
-      <Footer />
-      <WhatsAppButton />
-      <ChatBotWidget />
-    </div>
+    <CartProvider>
+      <div className="min-h-screen flex flex-col bg-[#0F0D0B]">
+        <Header />
+        <AvailabilityBar />
+        <main className="flex-1">
+          <HeroSection />
+          <AboutSection />
+          <TechStackMarquee />
+          <ServicesGrid />
+          <PricingSection />
+          <ProjectCarousel />
+          <TestimonialsSection />
+          <ResourcesSection />
+          <FAQSection />
+          <ClosingSection />
+        </main>
+        <Footer />
+        <WhatsAppButton />
+        <FloatingCart />
+        <ChatBotWidget />
+      </div>
+    </CartProvider>
   );
 }
