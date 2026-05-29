@@ -468,3 +468,42 @@ html {
 .modal-enter {
   animation: modalFadeIn 0.3s ease-out forwards;
 }
+
+/* ========== TECH STACK MARQUEE ========== */
+@keyframes techMarqueeLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes techMarqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.tech-marquee-left {
+  animation: techMarqueeLeft 40s linear infinite;
+}
+
+.tech-marquee-left:hover {
+  animation-play-state: paused;
+}
+
+.tech-marquee-right {
+  animation: techMarqueeRight 45s linear infinite;
+}
+
+.tech-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* ========== SCROLL REVEAL ANIMATIONS ========== */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-section.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}

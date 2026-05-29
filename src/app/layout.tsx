@@ -16,32 +16,50 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Portafolio Daniela | Estratega Digital & Ventas con IA",
+  title: "Daniela Silva | Estratega Digital & Ventas con IA — LLAVE DIGITAL 3.0",
   description:
-    "Portafolio profesional de Daniela Silva. Sistemas de ventas automáticos mediante Inteligencia Artificial. +8 años de trayectoria internacional.",
+    "Transformo negocios tradicionales en máquinas de facturación digital con Inteligencia Artificial. Bots WhatsApp 24/7, marketplaces, agentes IA, embudos de conversión y automatización. +8 años de trayectoria en Venezuela, Colombia, Perú y EE.UU.",
   keywords: [
     "Daniela Silva",
-    "portafolio",
+    "LLAVE DIGITAL 3.0",
     "estratega digital",
     "inteligencia artificial",
     "ventas automáticas",
-    "chatbot",
+    "chatbot WhatsApp",
     "marketing digital",
     "negocios digitales",
-    "LLAVE DIGITAL",
-    "bot WhatsApp",
+    "bot vendedor",
     "marketplace",
     "landing page",
+    "embudo de ventas",
+    "agentes IA",
+    "automatización",
+    "social commerce",
+    "conversión omnicanal",
+    "tracking CAPI",
+    "Meta Ads",
+    "Google Analytics",
   ],
   authors: [{ name: "Daniela Silva" }],
+  creator: "Daniela Silva",
+  publisher: "LLAVE DIGITAL 3.0",
+  robots: "index, follow",
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
-    title: "Portafolio Daniela | Estratega Digital & Ventas con IA",
+    title: "Daniela Silva | Estratega Digital & Ventas con IA",
     description:
-      "Sistemas de ventas automáticos mediante Inteligencia Artificial. +8 años de trayectoria internacional.",
+      "Sistemas de ventas automáticos con IA. Bots, marketplaces, agentes inteligentes y automatización. +8 años de trayectoria internacional.",
     type: "website",
+    locale: "es_VE",
+    siteName: "Portafolio Daniela Silva",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Daniela Silva | Estratega Digital & Ventas con IA",
+    description:
+      "Transformo negocios con IA. Bots WhatsApp, marketplaces, agentes IA y automatización 24/7.",
   },
 };
 
@@ -52,6 +70,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="dark" suppressHydrationWarning>
+      <head>
+        <meta name="theme-color" content="#0F0D0B" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body
         className={`${inter.variable} ${playfair.variable} antialiased bg-background text-foreground font-sans`}
       >
@@ -61,9 +84,9 @@ export default function RootLayout({
           position="bottom-left"
           toastOptions={{
             style: {
-              background: "#1A1714",
-              border: "1px solid rgba(201, 168, 76, 0.3)",
-              color: "#E8E0D4",
+              background: "#1E1B16",
+              border: "1px solid rgba(107, 127, 78, 0.25)",
+              color: "#E2D9CC",
             },
           }}
         />

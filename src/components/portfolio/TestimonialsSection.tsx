@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import { Star } from "lucide-react";
 
 interface Testimonial {
@@ -9,9 +10,9 @@ interface Testimonial {
   country: string;
   flag: string;
   text: string;
-  lang: "es" | "en";
   service: string;
   rating: number;
+  avatar: string;
 }
 
 const testimonials: Testimonial[] = [
@@ -20,90 +21,90 @@ const testimonials: Testimonial[] = [
     country: "Venezuela",
     flag: "🇻🇪",
     text: "Daniela transformó mi tienda. En 2 semanas vendía más online que en la física.",
-    lang: "es",
     service: "Marketplace + Bot",
     rating: 5,
+    avatar: "/images/test-carolina.png",
   },
   {
     name: "James R.",
     country: "EE.UU.",
     flag: "🇺🇸",
     text: "Su chatbot aumentó mi conversión 340% en el primer mes. Game-changing.",
-    lang: "en",
     service: "AI Chatbot",
     rating: 5,
+    avatar: "/images/test-james.png",
   },
   {
-    name: "María F. López",
+    name: "María F.",
     country: "Colombia",
     flag: "🇨🇴",
     text: "La asesoría fue la mejor inversión. 31 días y ya vendía automático.",
-    lang: "es",
     service: "Asesoría 1:1",
     rating: 5,
+    avatar: "/images/test-maria.png",
   },
   {
     name: "Sarah T.",
     country: "Canadá",
     flag: "🇨🇦",
     text: "La integración omnichannel me ahorra 20+ horas semanales. Brillante.",
-    lang: "en",
     service: "Omnichannel",
     rating: 5,
+    avatar: "/images/test-sarah.png",
   },
   {
     name: "Ricardo H.",
     country: "Perú",
     flag: "🇵🇪",
     text: "MiniApp que sincroniza con Calendar y envía recordatorios. Cero citas perdidas.",
-    lang: "es",
     service: "MiniApp",
     rating: 5,
+    avatar: "/images/test-ricardo.png",
   },
   {
     name: "Emily C.",
     country: "EE.UU.",
     flag: "🇺🇸",
     text: "12K shares en 48 horas con su blueprint viral. Ella sabe lo que hace.",
-    lang: "en",
     service: "Campañas Virales",
     rating: 5,
+    avatar: "/images/test-emily.png",
   },
   {
-    name: "Ana K. Díaz",
+    name: "Ana K.",
     country: "Venezuela",
     flag: "🇻🇪",
     text: "Contenido IA de nivel hollywoodense. Mis TikTok pasaron de 200 a 15K vistas.",
-    lang: "es",
     service: "Contenido IA",
     rating: 5,
+    avatar: "/images/test-anak.png",
   },
   {
     name: "David M.",
     country: "Colombia",
     flag: "🇨🇴",
     text: "Mentorship transformadora. A las 8 semanas ya facturaba online.",
-    lang: "es",
     service: "Mentorship",
     rating: 5,
+    avatar: "/images/test-david.png",
   },
   {
     name: "Lisa M.",
     country: "Reino Unido",
     flag: "🇬🇧",
     text: "Agentes IA manejan 90% de consultas. Satisfacción 4.9/5.",
-    lang: "en",
     service: "Agentes IA",
     rating: 5,
+    avatar: "/images/test-lisa.png",
   },
   {
     name: "Gabriela T.",
     country: "México",
     flag: "🇲🇽",
     text: "Encontró 3 problemas que me costaban $2,000/mes en ventas perdidas.",
-    lang: "es",
     service: "Auditoría",
     rating: 5,
+    avatar: "/images/test-gabriela.png",
   },
 ];
 
@@ -113,7 +114,6 @@ export function TestimonialsSection() {
 
   return (
     <section id="testimonios" className="py-10 md:py-14 relative overflow-hidden">
-      {/* Section Title */}
       <div className="max-w-7xl mx-auto px-4 text-center mb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -134,7 +134,6 @@ export function TestimonialsSection() {
         </motion.div>
       </div>
 
-      {/* Infinite Marquee Row */}
       <motion.div
         ref={ref}
         initial={{ opacity: 0 }}
@@ -146,39 +145,40 @@ export function TestimonialsSection() {
             {[...testimonials, ...testimonials].map((testimonial, idx) => (
               <div
                 key={idx}
-                className="group flex-shrink-0 w-[220px] bg-[#1E1B16] rounded-xl border border-[rgba(107,127,78,0.1)] hover:border-[#6B7F4E]/30 transition-all duration-300 p-4 flex flex-col items-center text-center"
+                className="group flex-shrink-0 w-[200px] bg-[#1E1B16] rounded-xl border border-[rgba(107,127,78,0.1)] hover:border-[#6B7F4E]/30 transition-all duration-300 p-3.5 flex flex-col items-center text-center"
               >
-                {/* Circular avatar with flag */}
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#4A5A35] via-[#6B7F4E] to-[#8FA36E] p-[2px] mb-3">
-                  <div className="w-full h-full rounded-full bg-[#1E1B16] flex items-center justify-center">
-                    <span className="text-lg">{testimonial.flag}</span>
+                {/* Circular avatar with real AI photo */}
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#4A5A35] via-[#6B7F4E] to-[#8FA36E] p-[2px] mb-2.5">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-[#1E1B16]">
+                    <Image
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      width={44}
+                      height={44}
+                      className="w-full h-full rounded-full object-cover"
+                    />
                   </div>
                 </div>
 
-                {/* Name */}
-                <h4 className="text-[#E2D9CC] font-semibold text-xs mb-0.5">
+                <h4 className="text-[#E2D9CC] font-semibold text-[11px] mb-0.5">
                   {testimonial.name}
                 </h4>
 
-                {/* Country */}
-                <span className="text-[#9A8E80] text-[10px] mb-2">
-                  {testimonial.country}
+                <span className="text-[#9A8E80] text-[9px] mb-1.5">
+                  {testimonial.flag} {testimonial.country}
                 </span>
 
-                {/* Stars */}
-                <div className="flex gap-0.5 mb-2">
+                <div className="flex gap-0.5 mb-1.5">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star key={i} className="w-2.5 h-2.5 text-[#6B7F4E]" fill="currentColor" />
                   ))}
                 </div>
 
-                {/* Text */}
                 <p className="text-[#9A8E80] text-[10px] leading-relaxed mb-2 line-clamp-3">
                   &ldquo;{testimonial.text}&rdquo;
                 </p>
 
-                {/* Service */}
-                <span className="text-[9px] px-2 py-0.5 rounded-full bg-[#0F0D0B] border border-[rgba(107,127,78,0.12)] text-[#6B7F4E]">
+                <span className="text-[8px] px-2 py-0.5 rounded-full bg-[#0F0D0B] border border-[rgba(107,127,78,0.12)] text-[#6B7F4E]">
                   {testimonial.service}
                 </span>
               </div>

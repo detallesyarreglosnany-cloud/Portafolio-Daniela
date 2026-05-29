@@ -8,6 +8,7 @@ import { ServicesGrid } from "@/components/portfolio/ServicesGrid";
 import { PricingSection } from "@/components/portfolio/PricingSection";
 import { ProjectCarousel } from "@/components/portfolio/ProjectCarousel";
 import { TestimonialsSection } from "@/components/portfolio/TestimonialsSection";
+import { TechStackMarquee } from "@/components/portfolio/TechStackMarquee";
 import { ResourcesSection } from "@/components/portfolio/ResourcesSection";
 import { FAQSection } from "@/components/portfolio/FAQSection";
 import { ClosingSection } from "@/components/portfolio/ClosingSection";
@@ -23,6 +24,7 @@ export default function Home() {
       <main className="flex-1">
         <HeroSection />
         <AboutSection />
+        <TechStackMarquee />
         <ServicesGrid />
         <PricingSection />
         <ProjectCarousel />
